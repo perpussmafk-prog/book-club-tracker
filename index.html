@@ -142,12 +142,13 @@
 
 <header>
   <div class="header-inner">
-    <a class="logo" href="#">
+    <a class="logo" href="#" onclick="openPasswordModal();return false;">
       <div class="logo-mark">📖</div>
       Book Club
     </a>
     <div class="header-actions">
       <button class="btn edit-only" onclick="openSettings()">⚙ Settings</button>
+      <button class="btn edit-only" onclick="exportFile()">⬇ Export</button>
       <button class="btn edit-only btn-accent" onclick="openAdd(null)">+ Add Student</button>
       <button class="btn" onclick="openShare()">↗ Share</button>
     </div>
@@ -266,6 +267,23 @@
   </div>
 </div>
 
+<!-- PASSWORD MODAL -->
+<div class="overlay" id="pw-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal" onclick="event.stopPropagation()" style="max-width:360px;text-align:center">
+    <div style="font-size:28px;margin-bottom:0.5rem">🔐</div>
+    <div class="modal-title" style="text-align:center;margin-bottom:0.5rem">Teacher Access</div>
+    <p style="font-size:13px;color:var(--ink3);margin-bottom:1.25rem">Enter your password to edit</p>
+    <div class="field">
+      <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')checkPassword()">
+    </div>
+    <p id="pw-error" style="font-size:12px;color:var(--red);margin-bottom:0.75rem;display:none">Wrong password, try again.</p>
+    <div style="display:flex;gap:8px">
+      <button class="btn" style="flex:1" onclick="document.getElementById('pw-modal').classList.remove('open')">Cancel</button>
+      <button class="btn btn-accent" style="flex:1" onclick="checkPassword()">Unlock</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -296,7 +314,7 @@ let nextId = 68;
 let editingId = null;
 let activeFilter = 'all';
 let activeClass = 'all';
-let isReadonly = false;
+let isReadonly = true; // read-only by default; unlock with password
 
 // ── STORAGE ────────────────────────────────────────────────────────────────
 function save() {
@@ -309,14 +327,15 @@ function load() {
   if (hash.startsWith('v1_')) {
     try {
       const d = JSON.parse(decodeURIComponent(escape(atob(hash.slice(3)))));
-      state = d.state; nextId = d.nextId || 13;
-      isReadonly = true;
-      document.body.classList.add('readonly');
-      render(); return;
+      state = d.state; nextId = d.nextId || 68;
     } catch(e) {}
+  } else {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) try { const d = JSON.parse(raw); state = d.state; nextId = d.nextId || 68; } catch(e) {}
   }
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (raw) try { const d = JSON.parse(raw); state = d.state; nextId = d.nextId || 68; } catch(e) {}
+  // always start readonly; teacher unlocks via logo click + password
+  isReadonly = true;
+  document.body.classList.add('readonly');
   render();
 }
 
@@ -330,6 +349,30 @@ function openShare() {
 function copyShareLink() {
   navigator.clipboard.writeText(document.getElementById('share-url-display').textContent)
     .then(() => showToast('Link copied!'));
+}
+
+// ── EXPORT ─────────────────────────────────────────────────────────────────
+function exportFile() {
+  // Grab the current page's HTML source
+  const src = document.documentElement.outerHTML;
+
+  // Build the replacement data line with current live state
+  const newDataLine = `let state = ${JSON.stringify(state)};\nlet nextId = ${nextId};`;
+
+  // Replace the baked-in state+nextId block using a regex that matches
+  // "let state = {...};\nlet nextId = N;"
+  const updated = src.replace(
+    /let state = \{[\s\S]*?\};\s*\nlet nextId = \d+;/,
+    newDataLine
+  );
+
+  const blob = new Blob([updated], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'index.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('index.html downloaded!');
 }
 
 // ── HELPERS ────────────────────────────────────────────────────────────────
@@ -589,6 +632,31 @@ function saveSettings() {
   save(); render();
   document.getElementById('settings-modal').classList.remove('open');
   showToast('Settings saved');
+}
+
+// ── PASSWORD / UNLOCK ──────────────────────────────────────────────────────
+const EDIT_PASSWORD = 'bookclub2025'; // change this to your own password
+
+function openPasswordModal() {
+  if (!isReadonly) return; // already unlocked
+  document.getElementById('pw-input').value = '';
+  document.getElementById('pw-error').style.display = 'none';
+  document.getElementById('pw-modal').classList.add('open');
+  setTimeout(() => document.getElementById('pw-input').focus(), 100);
+}
+
+function checkPassword() {
+  const val = document.getElementById('pw-input').value;
+  if (val === EDIT_PASSWORD) {
+    isReadonly = false;
+    document.body.classList.remove('readonly');
+    document.getElementById('pw-modal').classList.remove('open');
+    showToast('Edit mode unlocked ✓');
+  } else {
+    document.getElementById('pw-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
 }
 
 // ── TOAST ──────────────────────────────────────────────────────────────────
