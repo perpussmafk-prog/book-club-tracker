@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book Club · Progress Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -138,7 +136,7 @@
   }
 </style>
 </head>
-<body>
+<body class="">
 
 <header>
   <div class="header-inner">
@@ -158,19 +156,25 @@
 <main>
   <div class="hero">
     <div class="book-label">Book Club · Reading Tracker</div>
-    <h1 class="book-title" id="display-title">Reading Assignment</h1>
+    <h1 class="book-title" id="display-title">Social Book Club</h1>
     <div class="book-meta" id="display-sub">Semester Assignment</div>
     <div class="deadline-chip" id="deadline-chip" style="display:none">
       ⏰ <span id="days-remaining"></span> days remaining
     </div>
   </div>
 
-  <div class="stats-strip" id="stats-strip"></div>
+  <div class="stats-strip" id="stats-strip">
+    <div class="stat-cell"><div class="stat-num">67</div><div class="stat-desc">Total students</div></div>
+    <div class="stat-cell"><div class="stat-num">36%</div><div class="stat-desc">Avg. progress</div></div>
+    <div class="stat-cell"><div class="stat-num">30</div><div class="stat-desc">Reading now</div></div>
+    <div class="stat-cell"><div class="stat-num">6</div><div class="stat-desc">Need book club</div></div>
+    <div class="stat-cell"><div class="stat-num">3</div><div class="stat-desc">Fully done</div></div>
+    <div class="stat-cell"><div class="stat-num warn">28</div><div class="stat-desc">Not started</div></div></div>
 
-  <div class="class-tabs" id="class-tabs"></div>
+  <div class="class-tabs" id="class-tabs"><button class="class-tab" onclick="setClass('all')">All classes <span class="tab-count">67</span></button><button class="class-tab" onclick="setClass('X-AD')">X Ahmad Dahlan <span class="tab-count">20</span></button><button class="class-tab" onclick="setClass('XI-SB')">XI Sa'ad bin Abi Waqqash <span class="tab-count">23</span></button><button class="class-tab active" onclick="setClass('XI-IB')">XI Ibnu Batutah <span class="tab-count">24</span></button></div>
 
   <div class="toolbar">
-    <div style="font-size:13px;color:var(--ink3)" id="view-label"></div>
+    <div style="font-size:13px;color:var(--ink3)" id="view-label">XI Ibnu Batutah · 24 of 24 students</div>
     <div class="filter-bar">
       <button class="filter-chip active" onclick="setFilter('all',this)">All</button>
       <button class="filter-chip" onclick="setFilter('not_started',this)">Not started</button>
@@ -180,20 +184,308 @@
     </div>
   </div>
 
-  <div id="content"></div>
+  <div id="content"><div class="grid"><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">AR</div>
+      <div class="card-info">
+        <div class="card-name">Adelio Reinhard Suryana</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">AM</div>
+      <div class="card-info">
+        <div class="card-name">Andi Muhammad Farid Alfarabi</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">DS</div>
+      <div class="card-info">
+        <div class="card-name">Dafa Septian Mahardika</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-done">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">ES</div>
+      <div class="card-info">
+        <div class="card-name">Eisya Salsabila Nareswari</div>
+        <div class="card-book">Extraordinary Z</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#c8901a"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#fdf5e6;color:#7a5010">Needs book club</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">EF</div>
+      <div class="card-info">
+        <div class="card-name">Erland Faradillah Sugianto</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">FZ</div>
+      <div class="card-info">
+        <div class="card-name">Fadhlan Zulfa Azka</div>
+        <div class="card-book">Sepotong Hati yang Baru</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">HH</div>
+      <div class="card-info">
+        <div class="card-name">Hayya Hanifah</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-complete">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">MA</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Akhdan Shadiq</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#4a9063"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eef5f0;color:#2d5a3e">All done ✓</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">MA</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Ananda Rizqullah</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">MF</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Fendy Atahillah Putra</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">MH</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Hafizh Royyan</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">MH</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Hisyam Nawwary</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">MN</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Nabil Syafiq</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-complete">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">MZ</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Zidane Rayhan Kamil</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#4a9063"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eef5f0;color:#2d5a3e">All done ✓</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-done">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">NA</div>
+      <div class="card-info">
+        <div class="card-name">Nayla Amaliya</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#c8901a"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#fdf5e6;color:#7a5010">Needs book club</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">NA</div>
+      <div class="card-info">
+        <div class="card-name">Nurkhairurridho Avicenna Amu</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">SM</div>
+      <div class="card-info">
+        <div class="card-name">Sayid Muhammad Omar Ath Thouriq Hammani</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">SP</div>
+      <div class="card-info">
+        <div class="card-name">Selvira Putri Adiyani</div>
+        <div class="card-book">Sang Alkemis</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">SS</div>
+      <div class="card-info">
+        <div class="card-name">Shofa Salsabila</div>
+        <div class="card-book">Kumpulan Puisi Sang Pujangga</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-done">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">SM</div>
+      <div class="card-info">
+        <div class="card-name">Syaza Maghfiroh Saputri</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#c8901a"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#fdf5e6;color:#7a5010">Needs book club</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">YF</div>
+      <div class="card-info">
+        <div class="card-name">Yafi Farras Adinata</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">MF</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Fahry Syambulo</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">MG</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Gezan Diyya Addien</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">AJ</div>
+      <div class="card-info">
+        <div class="card-name">Afifah Juneeta Syaharani</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="add-card"><span style="font-size:20px;color:var(--ink3)">+</span> Add student</div></div></div>
 </main>
 
 <!-- STUDENT MODAL -->
 <div class="overlay" id="student-modal" onclick="closeStudentModal(event)">
   <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-title" id="modal-title">Add Student</div>
+    <div class="modal-title" id="modal-title">Edit Student</div>
     <div class="field">
       <label>Full Name</label>
       <input type="text" id="f-name" placeholder="e.g. Aisha Malik">
     </div>
     <div class="field">
       <label>Class</label>
-      <select id="f-class"></select>
+      <select id="f-class"><option value="X-AD">X Ahmad Dahlan</option><option value="XI-SB">XI Sa'ad bin Abi Waqqash</option><option value="XI-IB" selected="">XI Ibnu Batutah</option></select>
     </div>
     <div class="field">
       <label>Book Title</label>
@@ -211,13 +503,12 @@
     <div class="field">
       <label>Progress</label>
       <div class="range-row">
-        <input type="range" id="f-pct" min="0" max="100" value="0" step="5"
-          oninput="document.getElementById('f-pct-val').textContent=this.value+'%'">
+        <input type="range" id="f-pct" min="0" max="100" value="0" step="5" oninput="document.getElementById('f-pct-val').textContent=this.value+'%'">
         <div class="range-val" id="f-pct-val">0%</div>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn-ghost-danger" id="del-btn" onclick="deleteStudent()" style="display:none">Delete</button>
+      <button class="btn-ghost-danger" id="del-btn" onclick="deleteStudent()" style="">Delete</button>
       <div class="modal-actions">
         <button class="btn" onclick="closeStudentModal()">Cancel</button>
         <button class="btn btn-accent" onclick="saveStudent()">Save</button>
@@ -259,7 +550,7 @@
     <p style="font-size:14px;color:var(--ink3);margin-bottom:1.25rem;line-height:1.6">
       This link encodes your full class data. Students can browse but cannot edit.
     </p>
-    <div class="share-input" id="share-url-display"></div>
+    <div class="share-input" id="share-url-display">https://2026-smafk-reading-assignment.netlify.app/#v1_eyJzdGF0ZSI6eyJ0aXRsZSI6IlNvY2lhbCBCb29rIENsdWIiLCJzdWIiOiJTZW1lc3RlciBBc3NpZ25tZW50IiwiZGVhZGxpbmUiOm51bGwsInN0dWRlbnRzIjpbeyJpZCI6MSwiY2xhc3NJZCI6IlgtQUQiLCJuYW1lIjoiQWRhbSBBbCBHaGFpc2FuIiwiYm9vayI6Ikp1cnVzIFNlaGF0IFJhc3VsdWxsYWggOiBIaWR1cCBTZWhhdCBNZW5lYmFyIE1hbmZhYXQiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6MiwiY2xhc3NJZCI6IlgtQUQiLCJuYW1lIjoiQWRpbmF0YSBGaXJ6YW4gRmlybGFuYSIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6MywiY2xhc3NJZCI6IlgtQUQiLCJuYW1lIjoiQWlmIEtoYWl6dXJhbiBBbmFuZGEiLCJib29rIjoiSGlnaCBSZXB1dGF0aW9uIiwic3RhdHVzIjoicmVhZGluZyIsInBjdCI6NTB9LHsiaWQiOjQsImNsYXNzSWQiOiJYLUFEIiwibmFtZSI6IkFpc3lhaCBBbmluZHlhIEluZGFydGEiLCJib29rIjoiSGlnaCBSZXB1dGF0aW9uIiwic3RhdHVzIjoicmVhZGluZyIsInBjdCI6NTB9LHsiaWQiOjUsImNsYXNzSWQiOiJYSS1TQiIsIm5hbWUiOiJBYmRpbGxhaCBLYXJpbSBBbCBLYXlpcyIsImJvb2siOiJTYWthbW90byBEYXlzIDogVm9sdW1lIDMiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6NiwiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6IkFubmlzYSBSYW1hZGhhbmkgQXp6YWhyYSIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6NywiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6IkFzc3lmYSBBbWlsaWEgVGhhbGl0YSIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6OCwiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6IkNyeXN0YWwgQWltZWUgTGFrZWlzaGEiLCJib29rIjoiU2VwYXl1bmcgQmVyZHVhIiwic3RhdHVzIjoicmVhZGluZyIsInBjdCI6NTB9LHsiaWQiOjksImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJBZGVsaW8gUmVpbmhhcmQgU3VyeWFuYSIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6MTAsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJBbmRpIE11aGFtbWFkIEZhcmlkIEFsZmFyYWJpIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjoxMSwiY2xhc3NJZCI6IlhJLUlCIiwibmFtZSI6IkRhZmEgU2VwdGlhbiBNYWhhcmRpa2EiLCJib29rIjoiIiwic3RhdHVzIjoibm90X3N0YXJ0ZWQiLCJwY3QiOjEwMH0seyJpZCI6MTIsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJFaXN5YSBTYWxzYWJpbGEgTmFyZXN3YXJpIiwiYm9vayI6IkV4dHJhb3JkaW5hcnkgWiIsInN0YXR1cyI6ImRvbmUiLCJwY3QiOjEwMH0seyJpZCI6MTMsImNsYXNzSWQiOiJYLUFEIiwibmFtZSI6IkFpc3lhaCBOaW5kaGlyYSBTcmkgQXl1IFByYWRpdGEiLCJib29rIjoiUGFkYSBTZWJ1YWggS2FwYWwiLCJzdGF0dXMiOiJkb25lIiwicGN0IjoxMDB9LHsiaWQiOjE0LCJjbGFzc0lkIjoiWC1BRCIsIm5hbWUiOiJBbG1hIFphaGlyYSBSYWNobWF3YXRpIEFkaSBQdXRyaSIsImJvb2siOiJBIEdvb2QgR2lybCdzIEd1aWRlIHRvIE11cmRlciIsInN0YXR1cyI6InJlYWRpbmciLCJwY3QiOjUwfSx7ImlkIjoxNSwiY2xhc3NJZCI6IlgtQUQiLCJuYW1lIjoiQW5kcmEgUHV0cmEgUHJhdGFtYSIsImJvb2siOiJTYWthbW90byBEYXlzIDogVm9sdW1lIDEiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6MTYsImNsYXNzSWQiOiJYLUFEIiwibmFtZSI6IkFuaWRhIEl6emFoIE11cXRhc3lpZGFoIiwiYm9vayI6IlN1cGVyIE1hc3RlciBPU04gRmlzaWthIFVudHVrIFNNQSIsInN0YXR1cyI6ImRvbmUiLCJwY3QiOjEwMH0seyJpZCI6MTcsImNsYXNzSWQiOiJYLUFEIiwibmFtZSI6IkFubmlzYSBOYXp3YSBBdXJlbGlhIiwiYm9vayI6IkR1bmlhIFNhaW5zIEJpb2xvZ2kgOiBTZWwgZGFuIEtlaGlkdXBhbiIsInN0YXR1cyI6InJlYWRpbmciLCJwY3QiOjUwfSx7ImlkIjoxOCwiY2xhc3NJZCI6IlgtQUQiLCJuYW1lIjoiQXppemFoIE5hZGhpcmEgWWFzbWluIiwiYm9vayI6IkltbWVyIERlaW4sIElhbiIsInN0YXR1cyI6InJlYWRpbmciLCJwY3QiOjUwfSx7ImlkIjoxOSwiY2xhc3NJZCI6IlgtQUQiLCJuYW1lIjoiQmludGFuZyBEemFraSBBcnJhc3lpZCIsImJvb2siOiJOYXRpb25hbCBHZW9ncmFwaGljIEluZG9uZXNpYSA6IFBha2FyIEZvcmVuc2lrIE1lbWJ1cnUgUGVueWVsdW5kdXAgUGVyZGFnYW5nYW4gU2F0d2EgTGlhciIsInN0YXR1cyI6InJlYWRpbmciLCJwY3QiOjUwfSx7ImlkIjoyMCwiY2xhc3NJZCI6IlgtQUQiLCJuYW1lIjoiQ2hhaWRpciBHaGFuaSIsImJvb2siOiIiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6MjEsImNsYXNzSWQiOiJYLUFEIiwibmFtZSI6IkRhcmlvIEZlcm96IEFmaWYiLCJib29rIjoiTmF0aW9uYWwgR2VvZ3JhcGhpYyBJbmRvbmVzaWEgOiBMb3JlayBCYXJ1IEhhcmltYXUiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6MjIsImNsYXNzSWQiOiJYLUFEIiwibmFtZSI6IkRpbWFzIFBhbmppIEFzbW9ybyIsImJvb2siOiJOZWdlcmkgZGkgVWp1bmcgVGFuZHVrIiwic3RhdHVzIjoicmVhZGluZyIsInBjdCI6NTB9LHsiaWQiOjIzLCJjbGFzc0lkIjoiWC1BRCIsIm5hbWUiOiJJbmRpcmEgQXpyaSBaaGFmaXJhIiwiYm9vayI6IkxhdXQgQmVyY2VyaXRhIiwic3RhdHVzIjoicmVhZGluZyIsInBjdCI6NTB9LHsiaWQiOjI0LCJjbGFzc0lkIjoiWC1BRCIsIm5hbWUiOiJNdWhhbW1hZCBBdGhhaWxsYWggQXptaSBJcmF3YW5pIiwiYm9vayI6IlJpd2F5YXQgVGF1biBkYW4gV2FiYWggZGFsYW0gU2VqYXJhaCBJc2xhbSIsInN0YXR1cyI6InJlYWRpbmciLCJwY3QiOjUwfSx7ImlkIjoyNSwiY2xhc3NJZCI6IlgtQUQiLCJuYW1lIjoiTXVoYW1tYWQgRml0eWFuIEFsIEdoaWZhcmkiLCJib29rIjoiRGlsYW4gOiBEaWEgQWRhbGFoIERpbGFua3UgVGFodW4gMTk5MCIsInN0YXR1cyI6InJlYWRpbmciLCJwY3QiOjUwfSx7ImlkIjoyNiwiY2xhc3NJZCI6IlgtQUQiLCJuYW1lIjoiTXVoYW1tYWQgUmFmYSIsImJvb2siOiIiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6MjcsImNsYXNzSWQiOiJYLUFEIiwibmFtZSI6IlF1ZWVuc2hhIEZhdXppYWggU3lhaHJpbmkiLCJib29rIjoiRGFnbyBTZXRlbGFoIEh1amFuIiwic3RhdHVzIjoicmVhZGluZyIsInBjdCI6NTB9LHsiaWQiOjI4LCJjbGFzc0lkIjoiWC1BRCIsIm5hbWUiOiJSaW1hIExhaWxhIFJhbWFkaGFuaSIsImJvb2siOiJUaGUgU3dlZXRlc3QgTWVtb3JpZXMiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6MjksImNsYXNzSWQiOiJYSS1TQiIsIm5hbWUiOiJGYXRpbWFoIFRhc3lhIEFkYW1zIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjozMCwiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6IkdoYXlhdGEgUmlmcWkgQW5hbmRhIiwiYm9vayI6IlNha2Ftb3RvIERheXMgOiBWb2x1bWUgMTAiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6MzEsImNsYXNzSWQiOiJYSS1TQiIsIm5hbWUiOiJJc3RpcW9tYWggTm9lciBBZm5pIEF1bGlhIiwiYm9vayI6IkJhbmR1bmcgQWZ0ZXIgUmFpbiIsInN0YXR1cyI6InJlYWRpbmciLCJwY3QiOjUwfSx7ImlkIjozMiwiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6Ik0uIFByYW11ZHlhIFdhcmRoYW5hIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjozMywiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6Ik0uIFJhZmlpZiBOdXJoYWJpYmllIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjozNCwiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6Ik1pZWNjYWlsIFN1cnlhIiwiYm9vayI6Ik1lbmdpbmNhciBCdW5nIEJlc2FyIDogVHVqdWggVXBheWEgUGVtYnVudWhhbiBQcmVzaWRlbiBTdWthcm5vIiwic3RhdHVzIjoicmVhZGluZyIsInBjdCI6NTB9LHsiaWQiOjM1LCJjbGFzc0lkIjoiWEktU0IiLCJuYW1lIjoiTXVoYW1tYWQgRGVkZWsgQ2hhc3RpbyIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6MzYsImNsYXNzSWQiOiJYSS1TQiIsIm5hbWUiOiJNdWhhbW1hZCBHYXRoYW4gQWJoaW5heWEiLCJib29rIjoiU2FrYW1vdG8gRGF5cyA6IFZvbHVtZSAyIiwic3RhdHVzIjoicmVhZGluZyIsInBjdCI6NTB9LHsiaWQiOjM3LCJjbGFzc0lkIjoiWEktU0IiLCJuYW1lIjoiTXVoYW1tYWQgSXFiYWwgSXJ3YW5zeWFoIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjozOCwiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6Ik11aGFtbWFkIFJhZGl0eWEiLCJib29rIjoiU2kgQmVqYXQgeWFuZyBBaGxpIFN1cmdhIiwic3RhdHVzIjoicmVhZGluZyIsInBjdCI6NTB9LHsiaWQiOjM5LCJjbGFzc0lkIjoiWEktU0IiLCJuYW1lIjoiTnVtYSBGYWtpaCBKYXdoYXIgQWJpbGFyZCIsImJvb2siOiJOYXRpb25hbCBHZW9ncmFwaGljIiwic3RhdHVzIjoiZG9uZSIsInBjdCI6MTAwfSx7ImlkIjo0MCwiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6IlJhZGVuIEhhaWRhciBQcmFkaXB0YSBTYW11ZHJhIiwiYm9vayI6IldhcmtvcCBES0kgUmVib3JuIDogSmFuZ2tyaWsgQm9zcyEiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6NDEsImNsYXNzSWQiOiJYSS1TQiIsIm5hbWUiOiJSYWZhbiBXaWthbiBUeWFzYSIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6NDIsImNsYXNzSWQiOiJYSS1TQiIsIm5hbWUiOiJTYWx3YSBLYXlhbmEgRWtzdHJhZGEiLCJib29rIjoiIiwic3RhdHVzIjoibm90X3N0YXJ0ZWQiLCJwY3QiOjB9LHsiaWQiOjQzLCJjbGFzc0lkIjoiWEktU0IiLCJuYW1lIjoiVGlydGEgU291ZndhbiIsImJvb2siOiIiLCJzdGF0dXMiOiJjb21wbGV0ZSIsInBjdCI6MTAwfSx7ImlkIjo0NCwiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6Ilp1bGZhIEF3YWxpYSBSYW1hZGhhbmkiLCJib29rIjoiQW5pbWFsIEZhcm0iLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6NDUsImNsYXNzSWQiOiJYSS1TQiIsIm5hbWUiOiJBdGhheWEgR2hhaXRzYSBUc3VyYXlhIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjo0NiwiY2xhc3NJZCI6IlhJLVNCIiwibmFtZSI6Ik11aGFtbWFkIFJhZmkgSWhzYW4gSXJhd2FuaSIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6NDcsImNsYXNzSWQiOiJYSS1TQiIsIm5hbWUiOiJJbmRpcmEgTnVyIEFtaXJhaCBQdXRyaSIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6NDgsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJFcmxhbmQgRmFyYWRpbGxhaCBTdWdpYW50byIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6NDksImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJGYWRobGFuIFp1bGZhIEF6a2EiLCJib29rIjoiU2Vwb3RvbmcgSGF0aSB5YW5nIEJhcnUiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6NTAsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJIYXl5YSBIYW5pZmFoIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjo1MSwiY2xhc3NJZCI6IlhJLUlCIiwibmFtZSI6Ik11aGFtbWFkIEFraGRhbiBTaGFkaXEiLCJib29rIjoiIiwic3RhdHVzIjoiY29tcGxldGUiLCJwY3QiOjEwMH0seyJpZCI6NTIsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJNdWhhbW1hZCBBbmFuZGEgUml6cXVsbGFoIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjo1MywiY2xhc3NJZCI6IlhJLUlCIiwibmFtZSI6Ik11aGFtbWFkIEZlbmR5IEF0YWhpbGxhaCBQdXRyYSIsImJvb2siOiIiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0Ijo1MH0seyJpZCI6NTQsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJNdWhhbW1hZCBIYWZpemggUm95eWFuIiwiYm9vayI6IiIsInN0YXR1cyI6InJlYWRpbmciLCJwY3QiOjUwfSx7ImlkIjo1NSwiY2xhc3NJZCI6IlhJLUlCIiwibmFtZSI6Ik11aGFtbWFkIEhpc3lhbSBOYXd3YXJ5IiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjo1NiwiY2xhc3NJZCI6IlhJLUlCIiwibmFtZSI6Ik11aGFtbWFkIE5hYmlsIFN5YWZpcSIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6NTcsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJNdWhhbW1hZCBaaWRhbmUgUmF5aGFuIEthbWlsIiwiYm9vayI6IiIsInN0YXR1cyI6ImNvbXBsZXRlIiwicGN0IjoxMDB9LHsiaWQiOjU4LCJjbGFzc0lkIjoiWEktSUIiLCJuYW1lIjoiTmF5bGEgQW1hbGl5YSIsImJvb2siOiIiLCJzdGF0dXMiOiJkb25lIiwicGN0IjoxMDB9LHsiaWQiOjU5LCJjbGFzc0lkIjoiWEktSUIiLCJuYW1lIjoiTnVya2hhaXJ1cnJpZGhvIEF2aWNlbm5hIEFtdSIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6NjAsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJTYXlpZCBNdWhhbW1hZCBPbWFyIEF0aCBUaG91cmlxIEhhbW1hbmkiLCJib29rIjoiIiwic3RhdHVzIjoibm90X3N0YXJ0ZWQiLCJwY3QiOjB9LHsiaWQiOjYxLCJjbGFzc0lkIjoiWEktSUIiLCJuYW1lIjoiU2VsdmlyYSBQdXRyaSBBZGl5YW5pIiwiYm9vayI6IlNhbmcgQWxrZW1pcyIsInN0YXR1cyI6InJlYWRpbmciLCJwY3QiOjB9LHsiaWQiOjYyLCJjbGFzc0lkIjoiWEktSUIiLCJuYW1lIjoiU2hvZmEgU2Fsc2FiaWxhIiwiYm9vayI6Ikt1bXB1bGFuIFB1aXNpIFNhbmcgUHVqYW5nZ2EiLCJzdGF0dXMiOiJyZWFkaW5nIiwicGN0IjowfSx7ImlkIjo2MywiY2xhc3NJZCI6IlhJLUlCIiwibmFtZSI6IlN5YXphIE1hZ2hmaXJvaCBTYXB1dHJpIiwiYm9vayI6IiIsInN0YXR1cyI6ImRvbmUiLCJwY3QiOjEwMH0seyJpZCI6NjQsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJZYWZpIEZhcnJhcyBBZGluYXRhIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjo2NSwiY2xhc3NJZCI6IlhJLUlCIiwibmFtZSI6Ik11aGFtbWFkIEZhaHJ5IFN5YW1idWxvIiwiYm9vayI6IiIsInN0YXR1cyI6Im5vdF9zdGFydGVkIiwicGN0IjowfSx7ImlkIjo2NiwiY2xhc3NJZCI6IlhJLUlCIiwibmFtZSI6Ik11aGFtbWFkIEdlemFuIERpeXlhIEFkZGllbiIsImJvb2siOiIiLCJzdGF0dXMiOiJub3Rfc3RhcnRlZCIsInBjdCI6MH0seyJpZCI6NjcsImNsYXNzSWQiOiJYSS1JQiIsIm5hbWUiOiJBZmlmYWggSnVuZWV0YSBTeWFoYXJhbmkiLCJib29rIjoiIiwic3RhdHVzIjoibm90X3N0YXJ0ZWQiLCJwY3QiOjB9XX0sIm5leHRJZCI6Njh9</div>
     <div style="display:flex;gap:8px">
       <button class="btn btn-accent" style="flex:1" onclick="copyShareLink()">Copy link</button>
       <button class="btn" onclick="document.getElementById('share-modal').classList.remove('open')">Close</button>
@@ -284,7 +575,7 @@
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast">Student updated</div>
 
 <script>
 const STORAGE_KEY = 'bookclub_v3';
@@ -309,7 +600,7 @@ const PALETTES = [
   {bg:'#fdeaea',color:'#8a1a1a'},{bg:'#f0f0fa',color:'#2a2a7a'},
 ];
 
-let state = {"title":"Social Book Club","sub":"Semester Assignment","deadline":null,"students":[{"id":1,"classId":"X-AD","name":"Adam Al Ghaisan","book":"Jurus Sehat Rasulullah : Hidup Sehat Menebar Manfaat","status":"reading","pct":50},{"id":2,"classId":"X-AD","name":"Adinata Firzan Firlana","book":"","status":"not_started","pct":0},{"id":3,"classId":"X-AD","name":"Aif Khaizuran Ananda","book":"High Reputation","status":"reading","pct":50},{"id":4,"classId":"X-AD","name":"Aisyah Anindya Indarta","book":"High Reputation","status":"reading","pct":50},{"id":5,"classId":"XI-SB","name":"Abdillah Karim Al Kayis","book":"Sakamoto Days : Volume 3","status":"reading","pct":50},{"id":6,"classId":"XI-SB","name":"Annisa Ramadhani Azzahra","book":"","status":"not_started","pct":0},{"id":7,"classId":"XI-SB","name":"Assyfa Amilia Thalita","book":"","status":"not_started","pct":0},{"id":8,"classId":"XI-SB","name":"Crystal Aimee Lakeisha","book":"Sepayung Berdua","status":"reading","pct":50},{"id":9,"classId":"XI-IB","name":"Adelio Reinhard Suryana","book":"","status":"not_started","pct":0},{"id":10,"classId":"XI-IB","name":"Andi Muhammad Farid Alfarabi","book":"","status":"not_started","pct":0},{"id":11,"classId":"XI-IB","name":"Dafa Septian Mahardika","book":"","status":"not_started","pct":100},{"id":12,"classId":"XI-IB","name":"Eisya Salsabila Nareswari","book":"Extraordinary Z","status":"done","pct":100},{"id":13,"classId":"X-AD","name":"Aisyah Nindhira Sri Ayu Pradita","book":"Pada Sebuah Kapal","status":"done","pct":100},{"id":14,"classId":"X-AD","name":"Alma Zahira Rachmawati Adi Putri","book":"A Good Girl's Guide to Murder","status":"reading","pct":50},{"id":15,"classId":"X-AD","name":"Andra Putra Pratama","book":"Sakamoto Days : Volume 1","status":"reading","pct":50},{"id":16,"classId":"X-AD","name":"Anida Izzah Muqtasyidah","book":"Super Master OSN Fisika Untuk SMA","status":"done","pct":100},{"id":17,"classId":"X-AD","name":"Annisa Nazwa Aurelia","book":"Dunia Sains Biologi : Sel dan Kehidupan","status":"reading","pct":50},{"id":18,"classId":"X-AD","name":"Azizah Nadhira Yasmin","book":"Immer Dein, Ian","status":"reading","pct":50},{"id":19,"classId":"X-AD","name":"Bintang Dzaki Arrasyid","book":"National Geographic Indonesia : Pakar Forensik Memburu Penyelundup Perdagangan Satwa Liar","status":"reading","pct":50},{"id":20,"classId":"X-AD","name":"Chaidir Ghani","book":"","status":"reading","pct":50},{"id":21,"classId":"X-AD","name":"Dario Feroz Afif","book":"National Geographic Indonesia : Lorek Baru Harimau","status":"reading","pct":50},{"id":22,"classId":"X-AD","name":"Dimas Panji Asmoro","book":"Negeri di Ujung Tanduk","status":"reading","pct":50},{"id":23,"classId":"X-AD","name":"Indira Azri Zhafira","book":"Laut Bercerita","status":"reading","pct":50},{"id":24,"classId":"X-AD","name":"Muhammad Athaillah Azmi Irawani","book":"Riwayat Taun dan Wabah dalam Sejarah Islam","status":"reading","pct":50},{"id":25,"classId":"X-AD","name":"Muhammad Fityan Al Ghifari","book":"Dilan : Dia Adalah Dilanku Tahun 1990","status":"reading","pct":50},{"id":26,"classId":"X-AD","name":"Muhammad Rafa","book":"","status":"reading","pct":50},{"id":27,"classId":"X-AD","name":"Queensha Fauziah Syahrini","book":"Dago Setelah Hujan","status":"reading","pct":50},{"id":28,"classId":"X-AD","name":"Rima Laila Ramadhani","book":"The Sweetest Memories","status":"not_started","pct":0},{"id":29,"classId":"XI-SB","name":"Fatimah Tasya Adams","book":"","status":"not_started","pct":0},{"id":30,"classId":"XI-SB","name":"Ghayata Rifqi Ananda","book":"Sakamoto Days : Volume 10","status":"reading","pct":50},{"id":31,"classId":"XI-SB","name":"Istiqomah Noer Afni Aulia","book":"Bandung After Rain","status":"reading","pct":50},{"id":32,"classId":"XI-SB","name":"M. Pramudya Wardhana","book":"","status":"not_started","pct":0},{"id":33,"classId":"XI-SB","name":"M. Rafiif Nurhabibie","book":"","status":"not_started","pct":0},{"id":34,"classId":"XI-SB","name":"Mieccail Surya","book":"Mengincar Bung Besar : Tujuh Upaya Pembunuhan Presiden Sukarno","status":"reading","pct":50},{"id":35,"classId":"XI-SB","name":"Muhammad Dedek Chastio","book":"","status":"not_started","pct":0},{"id":36,"classId":"XI-SB","name":"Muhammad Gathan Abhinaya","book":"Sakamoto Days : Volume 2","status":"reading","pct":50},{"id":37,"classId":"XI-SB","name":"Muhammad Iqbal Irwansyah","book":"","status":"not_started","pct":0},{"id":38,"classId":"XI-SB","name":"Muhammad Raditya","book":"Si Bejat yang Ahli Surga","status":"reading","pct":50},{"id":39,"classId":"XI-SB","name":"Numa Fakih Jawhar Abilard","book":"National Geographic","status":"done","pct":100},{"id":40,"classId":"XI-SB","name":"Raden Haidar Pradipta Samudra","book":"Warkop DKI Reborn : Jangkrik Boss!","status":"reading","pct":50},{"id":41,"classId":"XI-SB","name":"Rafan Wikan Tyasa","book":"","status":"not_started","pct":0},{"id":42,"classId":"XI-SB","name":"Salwa Kayana Ekstrada","book":"","status":"not_started","pct":0},{"id":43,"classId":"XI-SB","name":"Tirta Soufwan","book":"","status":"complete","pct":100},{"id":44,"classId":"XI-SB","name":"Zulfa Awalia Ramadhani","book":"Animal Farm","status":"reading","pct":50},{"id":45,"classId":"XI-SB","name":"Athaya Ghaitsa Tsuraya","book":"","status":"not_started","pct":0},{"id":46,"classId":"XI-SB","name":"Muhammad Rafi Ihsan Irawani","book":"","status":"not_started","pct":0},{"id":47,"classId":"XI-SB","name":"Indira Nur Amirah Putri","book":"","status":"not_started","pct":0},{"id":48,"classId":"XI-IB","name":"Erland Faradillah Sugianto","book":"","status":"not_started","pct":0},{"id":49,"classId":"XI-IB","name":"Fadhlan Zulfa Azka","book":"Sepotong Hati yang Baru","status":"reading","pct":50},{"id":50,"classId":"XI-IB","name":"Hayya Hanifah","book":"","status":"not_started","pct":0},{"id":51,"classId":"XI-IB","name":"Muhammad Akhdan Shadiq","book":"","status":"complete","pct":100},{"id":52,"classId":"XI-IB","name":"Muhammad Ananda Rizqullah","book":"","status":"not_started","pct":0},{"id":53,"classId":"XI-IB","name":"Muhammad Fendy Atahillah Putra","book":"","status":"reading","pct":50},{"id":54,"classId":"XI-IB","name":"Muhammad Hafizh Royyan","book":"","status":"reading","pct":50},{"id":55,"classId":"XI-IB","name":"Muhammad Hisyam Nawwary","book":"","status":"not_started","pct":0},{"id":56,"classId":"XI-IB","name":"Muhammad Nabil Syafiq","book":"","status":"not_started","pct":0},{"id":57,"classId":"XI-IB","name":"Muhammad Zidane Rayhan Kamil","book":"","status":"complete","pct":100},{"id":58,"classId":"XI-IB","name":"Nayla Amaliya","book":"","status":"done","pct":100},{"id":59,"classId":"XI-IB","name":"Nurkhairurridho Avicenna Amu","book":"","status":"not_started","pct":0},{"id":60,"classId":"XI-IB","name":"Sayid Muhammad Omar Ath Thouriq Hammani","book":"","status":"not_started","pct":0},{"id":61,"classId":"XI-IB","name":"Selvira Putri Adiyani","book":"3726 MDPL","status":"reading","pct":0},{"id":62,"classId":"XI-IB","name":"Shofa Salsabila","book":"","status":"not_started","pct":0},{"id":63,"classId":"XI-IB","name":"Syaza Maghfiroh Saputri","book":"","status":"done","pct":100},{"id":64,"classId":"XI-IB","name":"Yafi Farras Adinata","book":"","status":"not_started","pct":0},{"id":65,"classId":"XI-IB","name":"Muhammad Fahry Syambulo","book":"","status":"not_started","pct":0},{"id":66,"classId":"XI-IB","name":"Muhammad Gezan Diyya Addien","book":"","status":"not_started","pct":0},{"id":67,"classId":"XI-IB","name":"Afifah Juneeta Syaharani","book":"","status":"not_started","pct":0}]};
+let state = {"title":"Social Book Club","sub":"Semester Assignment","deadline":null,"students":[{"id":1,"classId":"X-AD","name":"Adam Al Ghaisan","book":"Jurus Sehat Rasulullah : Hidup Sehat Menebar Manfaat","status":"reading","pct":50},{"id":2,"classId":"X-AD","name":"Adinata Firzan Firlana","book":"","status":"not_started","pct":0},{"id":3,"classId":"X-AD","name":"Aif Khaizuran Ananda","book":"High Reputation","status":"reading","pct":50},{"id":4,"classId":"X-AD","name":"Aisyah Anindya Indarta","book":"High Reputation","status":"reading","pct":50},{"id":5,"classId":"XI-SB","name":"Abdillah Karim Al Kayis","book":"Sakamoto Days : Volume 3","status":"reading","pct":50},{"id":6,"classId":"XI-SB","name":"Annisa Ramadhani Azzahra","book":"","status":"not_started","pct":0},{"id":7,"classId":"XI-SB","name":"Assyfa Amilia Thalita","book":"","status":"not_started","pct":0},{"id":8,"classId":"XI-SB","name":"Crystal Aimee Lakeisha","book":"Sepayung Berdua","status":"reading","pct":50},{"id":9,"classId":"XI-IB","name":"Adelio Reinhard Suryana","book":"","status":"not_started","pct":0},{"id":10,"classId":"XI-IB","name":"Andi Muhammad Farid Alfarabi","book":"","status":"not_started","pct":0},{"id":11,"classId":"XI-IB","name":"Dafa Septian Mahardika","book":"","status":"not_started","pct":100},{"id":12,"classId":"XI-IB","name":"Eisya Salsabila Nareswari","book":"Extraordinary Z","status":"done","pct":100},{"id":13,"classId":"X-AD","name":"Aisyah Nindhira Sri Ayu Pradita","book":"Pada Sebuah Kapal","status":"done","pct":100},{"id":14,"classId":"X-AD","name":"Alma Zahira Rachmawati Adi Putri","book":"A Good Girl's Guide to Murder","status":"reading","pct":50},{"id":15,"classId":"X-AD","name":"Andra Putra Pratama","book":"Sakamoto Days : Volume 1","status":"reading","pct":50},{"id":16,"classId":"X-AD","name":"Anida Izzah Muqtasyidah","book":"Super Master OSN Fisika Untuk SMA","status":"done","pct":100},{"id":17,"classId":"X-AD","name":"Annisa Nazwa Aurelia","book":"Dunia Sains Biologi : Sel dan Kehidupan","status":"reading","pct":50},{"id":18,"classId":"X-AD","name":"Azizah Nadhira Yasmin","book":"Immer Dein, Ian","status":"reading","pct":50},{"id":19,"classId":"X-AD","name":"Bintang Dzaki Arrasyid","book":"National Geographic Indonesia : Pakar Forensik Memburu Penyelundup Perdagangan Satwa Liar","status":"reading","pct":50},{"id":20,"classId":"X-AD","name":"Chaidir Ghani","book":"","status":"reading","pct":50},{"id":21,"classId":"X-AD","name":"Dario Feroz Afif","book":"National Geographic Indonesia : Lorek Baru Harimau","status":"reading","pct":50},{"id":22,"classId":"X-AD","name":"Dimas Panji Asmoro","book":"Negeri di Ujung Tanduk","status":"reading","pct":50},{"id":23,"classId":"X-AD","name":"Indira Azri Zhafira","book":"Laut Bercerita","status":"reading","pct":50},{"id":24,"classId":"X-AD","name":"Muhammad Athaillah Azmi Irawani","book":"Riwayat Taun dan Wabah dalam Sejarah Islam","status":"reading","pct":50},{"id":25,"classId":"X-AD","name":"Muhammad Fityan Al Ghifari","book":"Dilan : Dia Adalah Dilanku Tahun 1990","status":"reading","pct":50},{"id":26,"classId":"X-AD","name":"Muhammad Rafa","book":"","status":"reading","pct":50},{"id":27,"classId":"X-AD","name":"Queensha Fauziah Syahrini","book":"Dago Setelah Hujan","status":"reading","pct":50},{"id":28,"classId":"X-AD","name":"Rima Laila Ramadhani","book":"The Sweetest Memories","status":"not_started","pct":0},{"id":29,"classId":"XI-SB","name":"Fatimah Tasya Adams","book":"","status":"not_started","pct":0},{"id":30,"classId":"XI-SB","name":"Ghayata Rifqi Ananda","book":"Sakamoto Days : Volume 10","status":"reading","pct":50},{"id":31,"classId":"XI-SB","name":"Istiqomah Noer Afni Aulia","book":"Bandung After Rain","status":"reading","pct":50},{"id":32,"classId":"XI-SB","name":"M. Pramudya Wardhana","book":"","status":"not_started","pct":0},{"id":33,"classId":"XI-SB","name":"M. Rafiif Nurhabibie","book":"","status":"not_started","pct":0},{"id":34,"classId":"XI-SB","name":"Mieccail Surya","book":"Mengincar Bung Besar : Tujuh Upaya Pembunuhan Presiden Sukarno","status":"reading","pct":50},{"id":35,"classId":"XI-SB","name":"Muhammad Dedek Chastio","book":"","status":"not_started","pct":0},{"id":36,"classId":"XI-SB","name":"Muhammad Gathan Abhinaya","book":"Sakamoto Days : Volume 2","status":"reading","pct":50},{"id":37,"classId":"XI-SB","name":"Muhammad Iqbal Irwansyah","book":"","status":"not_started","pct":0},{"id":38,"classId":"XI-SB","name":"Muhammad Raditya","book":"Si Bejat yang Ahli Surga","status":"reading","pct":50},{"id":39,"classId":"XI-SB","name":"Numa Fakih Jawhar Abilard","book":"National Geographic","status":"done","pct":100},{"id":40,"classId":"XI-SB","name":"Raden Haidar Pradipta Samudra","book":"Warkop DKI Reborn : Jangkrik Boss!","status":"reading","pct":50},{"id":41,"classId":"XI-SB","name":"Rafan Wikan Tyasa","book":"","status":"not_started","pct":0},{"id":42,"classId":"XI-SB","name":"Salwa Kayana Ekstrada","book":"","status":"not_started","pct":0},{"id":43,"classId":"XI-SB","name":"Tirta Soufwan","book":"","status":"complete","pct":100},{"id":44,"classId":"XI-SB","name":"Zulfa Awalia Ramadhani","book":"Animal Farm","status":"reading","pct":50},{"id":45,"classId":"XI-SB","name":"Athaya Ghaitsa Tsuraya","book":"","status":"not_started","pct":0},{"id":46,"classId":"XI-SB","name":"Muhammad Rafi Ihsan Irawani","book":"","status":"not_started","pct":0},{"id":47,"classId":"XI-SB","name":"Indira Nur Amirah Putri","book":"","status":"not_started","pct":0},{"id":48,"classId":"XI-IB","name":"Erland Faradillah Sugianto","book":"","status":"not_started","pct":0},{"id":49,"classId":"XI-IB","name":"Fadhlan Zulfa Azka","book":"Sepotong Hati yang Baru","status":"reading","pct":50},{"id":50,"classId":"XI-IB","name":"Hayya Hanifah","book":"","status":"not_started","pct":0},{"id":51,"classId":"XI-IB","name":"Muhammad Akhdan Shadiq","book":"","status":"complete","pct":100},{"id":52,"classId":"XI-IB","name":"Muhammad Ananda Rizqullah","book":"","status":"not_started","pct":0},{"id":53,"classId":"XI-IB","name":"Muhammad Fendy Atahillah Putra","book":"","status":"reading","pct":50},{"id":54,"classId":"XI-IB","name":"Muhammad Hafizh Royyan","book":"","status":"reading","pct":50},{"id":55,"classId":"XI-IB","name":"Muhammad Hisyam Nawwary","book":"","status":"not_started","pct":0},{"id":56,"classId":"XI-IB","name":"Muhammad Nabil Syafiq","book":"","status":"not_started","pct":0},{"id":57,"classId":"XI-IB","name":"Muhammad Zidane Rayhan Kamil","book":"","status":"complete","pct":100},{"id":58,"classId":"XI-IB","name":"Nayla Amaliya","book":"","status":"done","pct":100},{"id":59,"classId":"XI-IB","name":"Nurkhairurridho Avicenna Amu","book":"","status":"not_started","pct":0},{"id":60,"classId":"XI-IB","name":"Sayid Muhammad Omar Ath Thouriq Hammani","book":"","status":"not_started","pct":0},{"id":61,"classId":"XI-IB","name":"Selvira Putri Adiyani","book":"Sang Alkemis","status":"reading","pct":0},{"id":62,"classId":"XI-IB","name":"Shofa Salsabila","book":"Kumpulan Puisi Sang Pujangga","status":"reading","pct":0},{"id":63,"classId":"XI-IB","name":"Syaza Maghfiroh Saputri","book":"","status":"done","pct":100},{"id":64,"classId":"XI-IB","name":"Yafi Farras Adinata","book":"","status":"not_started","pct":0},{"id":65,"classId":"XI-IB","name":"Muhammad Fahry Syambulo","book":"","status":"not_started","pct":0},{"id":66,"classId":"XI-IB","name":"Muhammad Gezan Diyya Addien","book":"","status":"not_started","pct":0},{"id":67,"classId":"XI-IB","name":"Afifah Juneeta Syaharani","book":"","status":"not_started","pct":0}]};
 let nextId = 68;
 let editingId = null;
 let activeFilter = 'all';
@@ -673,5 +964,6 @@ document.addEventListener('keydown', e => {
 
 load();
 </script>
-</body>
-</html>
+
+
+</body></html>
