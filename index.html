@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Club · Progress Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1612;
+    --ink2: #4a4540;
+    --ink3: #8a827a;
+    --cream: #faf7f2;
+    --cream2: #f2ede4;
+    --cream3: #e8e0d4;
+    --accent: #c8642a;
+    --green: #3d6b4f;
+    --amber: #b07820;
+    --blue: #2a5c8a;
+    --red: #a03030;
+    --red-bg: #fdeaea;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; line-height: 1.6; }
+
+  header { border-bottom: 1px solid var(--cream3); background: var(--cream); position: sticky; top: 0; z-index: 50; padding: 0 2rem; }
+  .header-inner { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem; }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; font-size: 18px; color: var(--ink); text-decoration: none; flex-shrink: 0; }
+  .logo-mark { width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 14px; }
+  .header-actions { display: flex; gap: 8px; align-items: center; }
+
+  .btn { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--cream3); background: transparent; color: var(--ink2); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .btn:hover { background: var(--cream2); }
+  .btn-accent { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-accent:hover { background: #b5581e; border-color: #b5581e; }
+
+  main { max-width: 1140px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+
+  .hero { margin-bottom: 2rem; }
+  .book-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 6px; }
+  .book-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 4vw, 40px); line-height: 1.2; color: var(--ink); margin-bottom: 6px; }
+  .book-meta { font-size: 14px; color: var(--ink3); }
+  .deadline-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--red-bg); color: var(--red); border: 1px solid #f0c0c0; border-radius: 20px; padding: 5px 14px; font-size: 13px; font-weight: 500; margin-top: 12px; }
+
+  .stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1px; background: var(--cream3); border: 1px solid var(--cream3); border-radius: var(--radius); overflow: hidden; margin-bottom: 2rem; }
+  .stat-cell { background: var(--cream); padding: 1.1rem 1.25rem; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; line-height: 1; color: var(--ink); }
+  .stat-num.warn { color: var(--red); }
+  .stat-desc { font-size: 12px; color: var(--ink3); margin-top: 3px; }
+
+  .class-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--cream3); margin-bottom: 2rem; overflow-x: auto; }
+  .class-tab { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 11px 18px; border: none; background: transparent; color: var(--ink3); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; transition: color 0.15s, border-color 0.15s; }
+  .class-tab:hover { color: var(--ink2); }
+  .class-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-count { font-size: 11px; background: var(--cream2); color: var(--ink3); border-radius: 10px; padding: 1px 7px; margin-left: 5px; font-weight: 400; }
+  .class-tab.active .tab-count { background: #fdecd8; color: var(--accent); }
+
+  .toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 10px; }
+  .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+  .filter-chip { font-size: 12px; font-family: 'DM Sans', sans-serif; padding: 5px 13px; border-radius: 20px; border: 1px solid var(--cream3); background: var(--cream); color: var(--ink2); cursor: pointer; transition: all 0.12s; }
+  .filter-chip:hover { background: var(--cream2); }
+  .filter-chip.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+
+  .card { background: #fff; border: 1px solid var(--cream3); border-radius: var(--radius); padding: 1.2rem; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; position: relative; overflow: hidden; }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; opacity: 0; transition: opacity 0.15s; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+  .card:hover::before { opacity: 1; }
+  .card.status-not_started::before { background: var(--ink3); }
+  .card.status-reading::before { background: var(--blue); }
+  .card.status-done::before { background: var(--amber); }
+  .card.status-complete::before { background: var(--green); }
+
+  .card-header { display: flex; align-items: flex-start; gap: 11px; margin-bottom: 13px; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; flex-shrink: 0; }
+  .card-info { flex: 1; min-width: 0; }
+  .card-name { font-size: 14px; font-weight: 500; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-book { font-size: 12px; color: var(--ink3); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-style: italic; }
+  .bar-track { height: 4px; background: var(--cream2); border-radius: 2px; margin-bottom: 9px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 2px; transition: width 0.4s; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .status-badge { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 20px; }
+  .pct-label { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--ink2); }
+
+  .add-card { background: transparent; border: 1.5px dashed var(--cream3); border-radius: var(--radius); padding: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--ink3); font-size: 13px; transition: all 0.15s; min-height: 140px; }
+  .add-card:hover { background: var(--cream2); border-color: var(--ink3); color: var(--ink2); }
+
+  .class-section { margin-bottom: 3rem; }
+  .class-section-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--ink); margin-bottom: 6px; }
+  .class-mini-stats { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .class-mini-stat { font-size: 13px; color: var(--ink3); }
+  .class-mini-stat.blue { color: #1a4f7a; }
+  .class-mini-stat.red { color: var(--red); }
+  .class-mini-stat.amber { color: var(--amber); }
+  .class-mini-stat.green { color: var(--green); }
+
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(20,16,10,0.45); backdrop-filter: blur(4px); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
+  .overlay.open { display: flex; }
+  .modal { background: var(--cream); border-radius: var(--radius); border: 1px solid var(--cream3); width: 100%; max-width: 440px; padding: 2rem; animation: slideUp 0.2s ease; max-height: 90vh; overflow-y: auto; }
+  @keyframes slideUp { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 1.5rem; color: var(--ink); }
+  .field { margin-bottom: 1rem; }
+  .field label { display: block; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink3); margin-bottom: 6px; }
+  .field input, .field select { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 14px; padding: 10px 14px; border: 1px solid var(--cream3); border-radius: var(--radius-sm); background: #fff; color: var(--ink); outline: none; transition: border-color 0.15s; }
+  .field input:focus, .field select:focus { border-color: var(--accent); }
+  .range-row { display: flex; align-items: center; gap: 12px; }
+  .field input[type="range"] { flex: 1; padding: 0; accent-color: var(--accent); height: 4px; cursor: pointer; }
+  .range-val { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--ink); min-width: 44px; text-align: right; }
+  .modal-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; gap: 8px; }
+  .btn-ghost-danger { background: transparent; border: 1px solid #f0c0c0; color: var(--red); font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 14px; border-radius: var(--radius-sm); cursor: pointer; transition: background 0.15s; }
+  .btn-ghost-danger:hover { background: var(--red-bg); }
+  .modal-actions { display: flex; gap: 8px; }
+
+  .share-input { width: 100%; font-family: 'DM Sans', sans-serif; font-size: 12px; padding: 10px 14px; border: 1px solid var(--cream3); border-radius: var(--radius-sm); background: var(--cream2); color: var(--ink2); margin-bottom: 12px; word-break: break-all; line-height: 1.5; }
+
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--cream); padding: 12px 20px; border-radius: 30px; font-size: 13px; opacity: 0; transition: all 0.25s; z-index: 999; white-space: nowrap; pointer-events: none; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  body.readonly .card { cursor: default; }
+  body.readonly .card:hover { transform: none; box-shadow: none; }
+  body.readonly .edit-only { display: none !important; }
+
+  .empty-state { grid-column: 1/-1; text-align: center; padding: 3rem 1rem; color: var(--ink3); }
+  .empty-state p { font-size: 15px; margin-bottom: 6px; }
+
+  @media (max-width: 600px) {
+    main { padding: 1.5rem 1rem 3rem; }
+    header { padding: 0 1rem; }
+    .stats-strip { grid-template-columns: 1fr 1fr; }
+    .class-tab { padding: 10px 12px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-mark">📖</div>
+      Book Club
+    </a>
+    <div class="header-actions">
+      <button class="btn edit-only" onclick="openSettings()">⚙ Settings</button>
+      <button class="btn edit-only btn-accent" onclick="openAdd(null)">+ Add Student</button>
+      <button class="btn" onclick="openShare()">↗ Share</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="book-label">Book Club · Reading Tracker</div>
+    <h1 class="book-title" id="display-title">Reading Assignment</h1>
+    <div class="book-meta" id="display-sub">Semester Assignment</div>
+    <div class="deadline-chip" id="deadline-chip" style="display:none">
+      ⏰ <span id="days-remaining"></span> days remaining
+    </div>
+  </div>
+
+  <div class="stats-strip" id="stats-strip"></div>
+
+  <div class="class-tabs" id="class-tabs"></div>
+
+  <div class="toolbar">
+    <div style="font-size:13px;color:var(--ink3)" id="view-label"></div>
+    <div class="filter-bar">
+      <button class="filter-chip active" onclick="setFilter('all',this)">All</button>
+      <button class="filter-chip" onclick="setFilter('not_started',this)">Not started</button>
+      <button class="filter-chip" onclick="setFilter('reading',this)">Reading</button>
+      <button class="filter-chip" onclick="setFilter('done',this)">Needs club</button>
+      <button class="filter-chip" onclick="setFilter('complete',this)">Done</button>
+    </div>
+  </div>
+
+  <div id="content"></div>
+</main>
+
+<!-- STUDENT MODAL -->
+<div class="overlay" id="student-modal" onclick="closeStudentModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-title" id="modal-title">Add Student</div>
+    <div class="field">
+      <label>Full Name</label>
+      <input type="text" id="f-name" placeholder="e.g. Aisha Malik">
+    </div>
+    <div class="field">
+      <label>Class</label>
+      <select id="f-class"></select>
+    </div>
+    <div class="field">
+      <label>Book Title</label>
+      <input type="text" id="f-book" placeholder="e.g. Pachinko">
+    </div>
+    <div class="field">
+      <label>Status</label>
+      <select id="f-status" onchange="onStatusChange()">
+        <option value="not_started">Hasn't started yet</option>
+        <option value="reading">Currently reading</option>
+        <option value="done">Done — needs book club session</option>
+        <option value="complete">Fully complete ✓</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Progress</label>
+      <div class="range-row">
+        <input type="range" id="f-pct" min="0" max="100" value="0" step="5"
+          oninput="document.getElementById('f-pct-val').textContent=this.value+'%'">
+        <div class="range-val" id="f-pct-val">0%</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost-danger" id="del-btn" onclick="deleteStudent()" style="display:none">Delete</button>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeStudentModal()">Cancel</button>
+        <button class="btn btn-accent" onclick="saveStudent()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="overlay" id="settings-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-title">Settings</div>
+    <div class="field">
+      <label>Assignment Title</label>
+      <input type="text" id="s-title" placeholder="Reading Assignment">
+    </div>
+    <div class="field">
+      <label>Subtitle</label>
+      <input type="text" id="s-sub" placeholder="Semester Assignment">
+    </div>
+    <div class="field">
+      <label>Deadline</label>
+      <input type="date" id="s-deadline">
+    </div>
+    <div class="modal-footer">
+      <div></div>
+      <div class="modal-actions">
+        <button class="btn" onclick="document.getElementById('settings-modal').classList.remove('open')">Cancel</button>
+        <button class="btn btn-accent" onclick="saveSettings()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SHARE MODAL -->
+<div class="overlay" id="share-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-title">Share with students</div>
+    <p style="font-size:14px;color:var(--ink3);margin-bottom:1.25rem;line-height:1.6">
+      This link encodes your full class data. Students can browse but cannot edit.
+    </p>
+    <div class="share-input" id="share-url-display"></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-accent" style="flex:1" onclick="copyShareLink()">Copy link</button>
+      <button class="btn" onclick="document.getElementById('share-modal').classList.remove('open')">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY = 'bookclub_v3';
+
+const CLASSES = [
+  { id: 'X-AD',  label: 'X Ahmad Dahlan' },
+  { id: 'XI-SB', label: "XI Sa'ad bin Abi Waqqash" },
+  { id: 'XI-IB', label: 'XI Ibnu Batutah' },
+];
+
+const STATUSES = {
+  not_started: { label: "Hasn't started", bg: '#f0ece6', color: '#5a5248', bar: '#b4b2a9' },
+  reading:     { label: 'Reading now',    bg: '#eaf2fa', color: '#1a4f7a', bar: '#378ADD' },
+  done:        { label: 'Needs book club',bg: '#fdf5e6', color: '#7a5010', bar: '#c8901a' },
+  complete:    { label: 'All done ✓',     bg: '#eef5f0', color: '#2d5a3e', bar: '#4a9063' },
+};
+
+const PALETTES = [
+  {bg:'#eaf2fa',color:'#1a4f7a'},{bg:'#eef5f0',color:'#2d5a3e'},
+  {bg:'#fdf5e6',color:'#7a5010'},{bg:'#f5eef8',color:'#5a2d82'},
+  {bg:'#fff0ea',color:'#8a3010'},{bg:'#eafaf5',color:'#0a5a42'},
+  {bg:'#fdeaea',color:'#8a1a1a'},{bg:'#f0f0fa',color:'#2a2a7a'},
+];
+
+let state = {"title":"Social Book Club","sub":"Semester Assignment","deadline":null,"students":[{"id":1,"classId":"X-AD","name":"Adam Al Ghaisan","book":"Jurus Sehat Rasulullah : Hidup Sehat Menebar Manfaat","status":"reading","pct":50},{"id":2,"classId":"X-AD","name":"Adinata Firzan Firlana","book":"","status":"not_started","pct":0},{"id":3,"classId":"X-AD","name":"Aif Khaizuran Ananda","book":"High Reputation","status":"reading","pct":50},{"id":4,"classId":"X-AD","name":"Aisyah Anindya Indarta","book":"High Reputation","status":"reading","pct":50},{"id":5,"classId":"XI-SB","name":"Abdillah Karim Al Kayis","book":"Sakamoto Days : Volume 3","status":"reading","pct":50},{"id":6,"classId":"XI-SB","name":"Annisa Ramadhani Azzahra","book":"","status":"not_started","pct":0},{"id":7,"classId":"XI-SB","name":"Assyfa Amilia Thalita","book":"","status":"not_started","pct":0},{"id":8,"classId":"XI-SB","name":"Crystal Aimee Lakeisha","book":"Sepayung Berdua","status":"reading","pct":50},{"id":9,"classId":"XI-IB","name":"Adelio Reinhard Suryana","book":"","status":"not_started","pct":0},{"id":10,"classId":"XI-IB","name":"Andi Muhammad Farid Alfarabi","book":"","status":"not_started","pct":0},{"id":11,"classId":"XI-IB","name":"Dafa Septian Mahardika","book":"","status":"not_started","pct":100},{"id":12,"classId":"XI-IB","name":"Eisya Salsabila Nareswari","book":"Extraordinary Z","status":"done","pct":100},{"id":13,"classId":"X-AD","name":"Aisyah Nindhira Sri Ayu Pradita","book":"Pada Sebuah Kapal","status":"done","pct":100},{"id":14,"classId":"X-AD","name":"Alma Zahira Rachmawati Adi Putri","book":"A Good Girl's Guide to Murder","status":"reading","pct":50},{"id":15,"classId":"X-AD","name":"Andra Putra Pratama","book":"Sakamoto Days : Volume 1","status":"reading","pct":50},{"id":16,"classId":"X-AD","name":"Anida Izzah Muqtasyidah","book":"Super Master OSN Fisika Untuk SMA","status":"done","pct":100},{"id":17,"classId":"X-AD","name":"Annisa Nazwa Aurelia","book":"Dunia Sains Biologi : Sel dan Kehidupan","status":"reading","pct":50},{"id":18,"classId":"X-AD","name":"Azizah Nadhira Yasmin","book":"Immer Dein, Ian","status":"reading","pct":50},{"id":19,"classId":"X-AD","name":"Bintang Dzaki Arrasyid","book":"National Geographic Indonesia : Pakar Forensik Memburu Penyelundup Perdagangan Satwa Liar","status":"reading","pct":50},{"id":20,"classId":"X-AD","name":"Chaidir Ghani","book":"","status":"reading","pct":50},{"id":21,"classId":"X-AD","name":"Dario Feroz Afif","book":"National Geographic Indonesia : Lorek Baru Harimau","status":"reading","pct":50},{"id":22,"classId":"X-AD","name":"Dimas Panji Asmoro","book":"Negeri di Ujung Tanduk","status":"reading","pct":50},{"id":23,"classId":"X-AD","name":"Indira Azri Zhafira","book":"Laut Bercerita","status":"reading","pct":50},{"id":24,"classId":"X-AD","name":"Muhammad Athaillah Azmi Irawani","book":"Riwayat Taun dan Wabah dalam Sejarah Islam","status":"reading","pct":50},{"id":25,"classId":"X-AD","name":"Muhammad Fityan Al Ghifari","book":"Dilan : Dia Adalah Dilanku Tahun 1990","status":"reading","pct":50},{"id":26,"classId":"X-AD","name":"Muhammad Rafa","book":"","status":"reading","pct":50},{"id":27,"classId":"X-AD","name":"Queensha Fauziah Syahrini","book":"Dago Setelah Hujan","status":"reading","pct":50},{"id":28,"classId":"X-AD","name":"Rima Laila Ramadhani","book":"The Sweetest Memories","status":"not_started","pct":0},{"id":29,"classId":"XI-SB","name":"Fatimah Tasya Adams","book":"","status":"not_started","pct":0},{"id":30,"classId":"XI-SB","name":"Ghayata Rifqi Ananda","book":"Sakamoto Days : Volume 10","status":"reading","pct":50},{"id":31,"classId":"XI-SB","name":"Istiqomah Noer Afni Aulia","book":"Bandung After Rain","status":"reading","pct":50},{"id":32,"classId":"XI-SB","name":"M. Pramudya Wardhana","book":"","status":"not_started","pct":0},{"id":33,"classId":"XI-SB","name":"M. Rafiif Nurhabibie","book":"","status":"not_started","pct":0},{"id":34,"classId":"XI-SB","name":"Mieccail Surya","book":"Mengincar Bung Besar : Tujuh Upaya Pembunuhan Presiden Sukarno","status":"reading","pct":50},{"id":35,"classId":"XI-SB","name":"Muhammad Dedek Chastio","book":"","status":"not_started","pct":0},{"id":36,"classId":"XI-SB","name":"Muhammad Gathan Abhinaya","book":"Sakamoto Days : Volume 2","status":"reading","pct":50},{"id":37,"classId":"XI-SB","name":"Muhammad Iqbal Irwansyah","book":"","status":"not_started","pct":0},{"id":38,"classId":"XI-SB","name":"Muhammad Raditya","book":"Si Bejat yang Ahli Surga","status":"reading","pct":50},{"id":39,"classId":"XI-SB","name":"Numa Fakih Jawhar Abilard","book":"National Geographic","status":"done","pct":100},{"id":40,"classId":"XI-SB","name":"Raden Haidar Pradipta Samudra","book":"Warkop DKI Reborn : Jangkrik Boss!","status":"reading","pct":50},{"id":41,"classId":"XI-SB","name":"Rafan Wikan Tyasa","book":"","status":"not_started","pct":0},{"id":42,"classId":"XI-SB","name":"Salwa Kayana Ekstrada","book":"","status":"not_started","pct":0},{"id":43,"classId":"XI-SB","name":"Tirta Soufwan","book":"","status":"complete","pct":100},{"id":44,"classId":"XI-SB","name":"Zulfa Awalia Ramadhani","book":"Animal Farm","status":"reading","pct":50},{"id":45,"classId":"XI-SB","name":"Athaya Ghaitsa Tsuraya","book":"","status":"not_started","pct":0},{"id":46,"classId":"XI-SB","name":"Muhammad Rafi Ihsan Irawani","book":"","status":"not_started","pct":0},{"id":47,"classId":"XI-SB","name":"Indira Nur Amirah Putri","book":"","status":"not_started","pct":0},{"id":48,"classId":"XI-IB","name":"Erland Faradillah Sugianto","book":"","status":"not_started","pct":0},{"id":49,"classId":"XI-IB","name":"Fadhlan Zulfa Azka","book":"Sepotong Hati yang Baru","status":"reading","pct":50},{"id":50,"classId":"XI-IB","name":"Hayya Hanifah","book":"","status":"not_started","pct":0},{"id":51,"classId":"XI-IB","name":"Muhammad Akhdan Shadiq","book":"","status":"complete","pct":100},{"id":52,"classId":"XI-IB","name":"Muhammad Ananda Rizqullah","book":"","status":"not_started","pct":0},{"id":53,"classId":"XI-IB","name":"Muhammad Fendy Atahillah Putra","book":"","status":"reading","pct":50},{"id":54,"classId":"XI-IB","name":"Muhammad Hafizh Royyan","book":"","status":"reading","pct":50},{"id":55,"classId":"XI-IB","name":"Muhammad Hisyam Nawwary","book":"","status":"not_started","pct":0},{"id":56,"classId":"XI-IB","name":"Muhammad Nabil Syafiq","book":"","status":"not_started","pct":0},{"id":57,"classId":"XI-IB","name":"Muhammad Zidane Rayhan Kamil","book":"","status":"complete","pct":100},{"id":58,"classId":"XI-IB","name":"Nayla Amaliya","book":"","status":"done","pct":100},{"id":59,"classId":"XI-IB","name":"Nurkhairurridho Avicenna Amu","book":"","status":"not_started","pct":0},{"id":60,"classId":"XI-IB","name":"Sayid Muhammad Omar Ath Thouriq Hammani","book":"","status":"not_started","pct":0},{"id":61,"classId":"XI-IB","name":"Selvira Putri Adiyani","book":"3726 MDPL","status":"reading","pct":0},{"id":62,"classId":"XI-IB","name":"Shofa Salsabila","book":"","status":"not_started","pct":0},{"id":63,"classId":"XI-IB","name":"Syaza Maghfiroh Saputri","book":"","status":"done","pct":100},{"id":64,"classId":"XI-IB","name":"Yafi Farras Adinata","book":"","status":"not_started","pct":0},{"id":65,"classId":"XI-IB","name":"Muhammad Fahry Syambulo","book":"","status":"not_started","pct":0},{"id":66,"classId":"XI-IB","name":"Muhammad Gezan Diyya Addien","book":"","status":"not_started","pct":0},{"id":67,"classId":"XI-IB","name":"Afifah Juneeta Syaharani","book":"","status":"not_started","pct":0}]};
+let nextId = 68;
+let editingId = null;
+let activeFilter = 'all';
+let activeClass = 'all';
+let isReadonly = false;
+
+// ── STORAGE ────────────────────────────────────────────────────────────────
+function save() {
+  if (isReadonly) return;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({state, nextId}));
+}
+
+function load() {
+  const hash = location.hash.slice(1);
+  if (hash.startsWith('v1_')) {
+    try {
+      const d = JSON.parse(decodeURIComponent(escape(atob(hash.slice(3)))));
+      state = d.state; nextId = d.nextId || 13;
+      isReadonly = true;
+      document.body.classList.add('readonly');
+      render(); return;
+    } catch(e) {}
+  }
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) try { const d = JSON.parse(raw); state = d.state; nextId = d.nextId || 68; } catch(e) {}
+  render();
+}
+
+// ── SHARE ──────────────────────────────────────────────────────────────────
+function openShare() {
+  const enc = btoa(unescape(encodeURIComponent(JSON.stringify({state, nextId}))));
+  document.getElementById('share-url-display').textContent =
+    location.origin + location.pathname + '#v1_' + enc;
+  document.getElementById('share-modal').classList.add('open');
+}
+function copyShareLink() {
+  navigator.clipboard.writeText(document.getElementById('share-url-display').textContent)
+    .then(() => showToast('Link copied!'));
+}
+
+// ── HELPERS ────────────────────────────────────────────────────────────────
+function initials(n) { return n.trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase(); }
+function pal(id) { const p=PALETTES[id%PALETTES.length]; return `background:${p.bg};color:${p.color}`; }
+function stats(arr) {
+  const t = arr.length;
+  return {
+    total: t,
+    avg: t ? Math.round(arr.reduce((a,s)=>a+s.pct,0)/t) : 0,
+    reading:    arr.filter(s=>s.status==='reading').length,
+    done:       arr.filter(s=>s.status==='done').length,
+    complete:   arr.filter(s=>s.status==='complete').length,
+    notStarted: arr.filter(s=>s.status==='not_started').length,
+  };
+}
+function filtered(arr) {
+  return activeFilter === 'all' ? arr : arr.filter(s=>s.status===activeFilter);
+}
+
+// ── RENDER ─────────────────────────────────────────────────────────────────
+function render() {
+  document.getElementById('display-title').textContent = state.title;
+  document.getElementById('display-sub').textContent = state.sub;
+  renderDeadline();
+  renderStats();
+  renderTabs();
+  renderContent();
+}
+
+function renderDeadline() {
+  const chip = document.getElementById('deadline-chip');
+  if (!state.deadline) { chip.style.display='none'; return; }
+  const now = new Date(); now.setHours(0,0,0,0);
+  const due = new Date(state.deadline+'T00:00:00');
+  const days = Math.ceil((due-now)/86400000);
+  document.getElementById('days-remaining').textContent =
+    days < 0 ? 'Overdue!' : days === 0 ? 'Due today!' : `${days}`;
+  chip.style.display = 'inline-flex';
+  chip.querySelector('span').textContent =
+    days < 0 ? 'Overdue!' : days === 0 ? 'Due today!' : `${days} days remaining`;
+}
+
+function renderStats() {
+  const st = stats(state.students);
+  document.getElementById('stats-strip').innerHTML = `
+    <div class="stat-cell"><div class="stat-num">${st.total}</div><div class="stat-desc">Total students</div></div>
+    <div class="stat-cell"><div class="stat-num">${st.avg}%</div><div class="stat-desc">Avg. progress</div></div>
+    <div class="stat-cell"><div class="stat-num">${st.reading}</div><div class="stat-desc">Reading now</div></div>
+    <div class="stat-cell"><div class="stat-num">${st.done}</div><div class="stat-desc">Need book club</div></div>
+    <div class="stat-cell"><div class="stat-num">${st.complete}</div><div class="stat-desc">Fully done</div></div>
+    <div class="stat-cell"><div class="stat-num${st.notStarted>0?' warn':''}">${st.notStarted}</div><div class="stat-desc">Not started</div></div>`;
+}
+
+function renderTabs() {
+  const all = state.students.length;
+  let html = `<button class="class-tab${activeClass==='all'?' active':''}" onclick="setClass('all')">All classes <span class="tab-count">${all}</span></button>`;
+  CLASSES.forEach(c => {
+    const n = state.students.filter(s=>s.classId===c.id).length;
+    html += `<button class="class-tab${activeClass===c.id?' active':''}" onclick="setClass('${c.id}')">${c.label} <span class="tab-count">${n}</span></button>`;
+  });
+  document.getElementById('class-tabs').innerHTML = html;
+}
+
+function makeCard(s) {
+  const st = STATUSES[s.status];
+  const d = document.createElement('div');
+  d.className = `card status-${s.status}`;
+  if (!isReadonly) d.onclick = () => openEdit(s.id);
+  d.innerHTML = `
+    <div class="card-header">
+      <div class="avatar" style="${pal(s.id)}">${initials(s.name)}</div>
+      <div class="card-info">
+        <div class="card-name">${s.name}</div>
+        <div class="card-book">${s.book || '<em style="opacity:0.4">No book set</em>'}</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:${s.pct}%;background:${st.bar}"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:${st.bg};color:${st.color}">${st.label}</span>
+      <span class="pct-label">${s.pct}%</span>
+    </div>`;
+  return d;
+}
+
+function addBtn(classId, label) {
+  const d = document.createElement('div');
+  d.className = 'add-card';
+  d.onclick = () => openAdd(classId);
+  d.innerHTML = `<span style="font-size:20px;color:var(--ink3)">+</span> ${label}`;
+  return d;
+}
+
+function renderContent() {
+  const wrap = document.getElementById('content');
+  wrap.innerHTML = '';
+
+  if (activeClass === 'all') {
+    document.getElementById('view-label').textContent =
+      `All classes · ${state.students.length} students`;
+
+    CLASSES.forEach(cls => {
+      const inClass = state.students.filter(s=>s.classId===cls.id);
+      const shown   = filtered(inClass);
+      const st      = stats(inClass);
+
+      const section = document.createElement('div');
+      section.className = 'class-section';
+
+      const miniParts = [
+        `<span class="class-mini-stat">${st.total} students</span>`,
+        `<span class="class-mini-stat">${st.avg}% avg</span>`,
+        st.reading    ? `<span class="class-mini-stat blue">${st.reading} reading</span>` : '',
+        st.notStarted ? `<span class="class-mini-stat red">${st.notStarted} not started</span>` : '',
+        st.done       ? `<span class="class-mini-stat amber">${st.done} need club</span>` : '',
+        st.complete   ? `<span class="class-mini-stat green">${st.complete} done</span>` : '',
+      ].filter(Boolean).join('');
+
+      section.innerHTML = `
+        <div class="class-section-title">${cls.label}</div>
+        <div class="class-mini-stats">${miniParts}</div>`;
+
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+
+      if (shown.length === 0) {
+        grid.innerHTML = `<div class="empty-state"><p>No students match this filter.</p></div>`;
+      } else {
+        shown.forEach(s => grid.appendChild(makeCard(s)));
+      }
+      if (!isReadonly) grid.appendChild(addBtn(cls.id, `Add to ${cls.label}`));
+
+      section.appendChild(grid);
+      wrap.appendChild(section);
+    });
+
+  } else {
+    const cls       = CLASSES.find(c=>c.id===activeClass);
+    const inClass   = state.students.filter(s=>s.classId===activeClass);
+    const shown     = filtered(inClass);
+    document.getElementById('view-label').textContent =
+      `${cls.label} · ${shown.length} of ${inClass.length} students`;
+
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+
+    if (shown.length === 0) {
+      grid.innerHTML = `<div class="empty-state"><p>No students match this filter.</p></div>`;
+    } else {
+      shown.forEach(s => grid.appendChild(makeCard(s)));
+    }
+    if (!isReadonly) grid.appendChild(addBtn(activeClass, 'Add student'));
+
+    wrap.appendChild(grid);
+  }
+}
+
+// ── FILTER / CLASS ─────────────────────────────────────────────────────────
+function setFilter(f, el) {
+  activeFilter = f;
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderContent();
+}
+
+function setClass(id) {
+  activeClass = id;
+  renderTabs();
+  renderContent();
+}
+
+// ── STUDENT MODAL ──────────────────────────────────────────────────────────
+function populateClassSelect(sel) {
+  document.getElementById('f-class').innerHTML =
+    CLASSES.map(c=>`<option value="${c.id}"${c.id===sel?' selected':''}>${c.label}</option>`).join('');
+}
+
+function openAdd(classId) {
+  editingId = null;
+  document.getElementById('modal-title').textContent = 'Add Student';
+  document.getElementById('f-name').value = '';
+  populateClassSelect(classId || (activeClass !== 'all' ? activeClass : CLASSES[0].id));
+  document.getElementById('f-book').value = '';
+  document.getElementById('f-status').value = 'not_started';
+  document.getElementById('f-pct').value = 0;
+  document.getElementById('f-pct-val').textContent = '0%';
+  document.getElementById('del-btn').style.display = 'none';
+  document.getElementById('student-modal').classList.add('open');
+  setTimeout(()=>document.getElementById('f-name').focus(), 100);
+}
+
+function openEdit(id) {
+  const s = state.students.find(x=>x.id===id);
+  editingId = id;
+  document.getElementById('modal-title').textContent = 'Edit Student';
+  document.getElementById('f-name').value = s.name;
+  populateClassSelect(s.classId);
+  document.getElementById('f-book').value = s.book || '';
+  document.getElementById('f-status').value = s.status;
+  document.getElementById('f-pct').value = s.pct;
+  document.getElementById('f-pct-val').textContent = s.pct+'%';
+  document.getElementById('del-btn').style.display = '';
+  document.getElementById('student-modal').classList.add('open');
+}
+
+function onStatusChange() {
+  const v = document.getElementById('f-status').value;
+  if (v==='complete'||v==='done') {
+    document.getElementById('f-pct').value = 100;
+    document.getElementById('f-pct-val').textContent = '100%';
+  }
+}
+
+function closeStudentModal(e) {
+  if (!e || e.target===document.getElementById('student-modal'))
+    document.getElementById('student-modal').classList.remove('open');
+}
+
+function saveStudent() {
+  const name = document.getElementById('f-name').value.trim();
+  if (!name) { document.getElementById('f-name').focus(); return; }
+  const obj = {
+    classId: document.getElementById('f-class').value,
+    name,
+    book:   document.getElementById('f-book').value.trim(),
+    status: document.getElementById('f-status').value,
+    pct:    parseInt(document.getElementById('f-pct').value),
+  };
+  if (editingId) {
+    Object.assign(state.students.find(x=>x.id===editingId), obj);
+    showToast('Student updated');
+  } else {
+    state.students.push({id: nextId++, ...obj});
+    showToast('Student added');
+  }
+  save(); render(); closeStudentModal();
+}
+
+function deleteStudent() {
+  state.students = state.students.filter(x=>x.id!==editingId);
+  save(); render(); closeStudentModal();
+  showToast('Student removed');
+}
+
+// ── SETTINGS ───────────────────────────────────────────────────────────────
+function openSettings() {
+  document.getElementById('s-title').value = state.title;
+  document.getElementById('s-sub').value   = state.sub;
+  document.getElementById('s-deadline').value = state.deadline || '';
+  document.getElementById('settings-modal').classList.add('open');
+}
+
+function saveSettings() {
+  state.title    = document.getElementById('s-title').value.trim() || 'Reading Assignment';
+  state.sub      = document.getElementById('s-sub').value.trim();
+  state.deadline = document.getElementById('s-deadline').value || null;
+  save(); render();
+  document.getElementById('settings-modal').classList.remove('open');
+  showToast('Settings saved');
+}
+
+// ── TOAST ──────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape')
+    document.querySelectorAll('.overlay.open').forEach(o=>o.classList.remove('open'));
+});
+
+load();
+</script>
+</body>
+</html>
