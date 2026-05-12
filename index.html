@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book Club · Progress Tracker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -138,7 +136,7 @@
   }
 </style>
 </head>
-<body>
+<body class="">
 
 <header>
   <div class="header-inner">
@@ -158,19 +156,25 @@
 <main>
   <div class="hero">
     <div class="book-label">Book Club · Reading Tracker</div>
-    <h1 class="book-title" id="display-title">Reading Assignment</h1>
+    <h1 class="book-title" id="display-title">Social Book Club</h1>
     <div class="book-meta" id="display-sub">Semester Assignment</div>
     <div class="deadline-chip" id="deadline-chip" style="display:none">
       ⏰ <span id="days-remaining"></span> days remaining
     </div>
   </div>
 
-  <div class="stats-strip edit-only" id="stats-strip"></div>
+  <div class="stats-strip edit-only" id="stats-strip">
+    <div class="stat-cell"><div class="stat-num">66</div><div class="stat-desc">Total students</div></div>
+    <div class="stat-cell"><div class="stat-num">36%</div><div class="stat-desc">Avg. progress</div></div>
+    <div class="stat-cell"><div class="stat-num">28</div><div class="stat-desc">Reading now</div></div>
+    <div class="stat-cell"><div class="stat-num">6</div><div class="stat-desc">Need book club</div></div>
+    <div class="stat-cell"><div class="stat-num">3</div><div class="stat-desc">Fully done</div></div>
+    <div class="stat-cell"><div class="stat-num warn">29</div><div class="stat-desc">Not started</div></div></div>
 
-  <div class="class-tabs" id="class-tabs"></div>
+  <div class="class-tabs" id="class-tabs"><button class="class-tab active" onclick="setClass('all')">All classes <span class="tab-count">66</span></button><button class="class-tab" onclick="setClass('X-AD')">X Ahmad Dahlan <span class="tab-count">19</span></button><button class="class-tab" onclick="setClass('XI-SB')">XI Sa'ad bin Abi Waqqash <span class="tab-count">23</span></button><button class="class-tab" onclick="setClass('XI-IB')">XI Ibnu Batutah <span class="tab-count">24</span></button></div>
 
   <div class="toolbar">
-    <div style="font-size:13px;color:var(--ink3)" id="view-label"></div>
+    <div style="font-size:13px;color:var(--ink3)" id="view-label">All classes · 66 students</div>
     <div class="filter-bar">
       <button class="filter-chip active" onclick="setFilter('all',this)">All</button>
       <button class="filter-chip" onclick="setFilter('not_started',this)">Not started</button>
@@ -180,7 +184,805 @@
     </div>
   </div>
 
-  <div id="content"></div>
+  <div id="content"><div class="class-section">
+        <div class="class-section-title">X Ahmad Dahlan</div>
+        <div class="class-mini-stats"><span class="class-mini-stat">19 students</span><span class="class-mini-stat">50% avg</span><span class="class-mini-stat blue">15 reading</span><span class="class-mini-stat red">2 not started</span><span class="class-mini-stat amber">2 need club</span></div><div class="grid"><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">AA</div>
+      <div class="card-info">
+        <div class="card-name">Adam Al Ghaisan</div>
+        <div class="card-book">Jurus Sehat Rasulullah : Hidup Sehat Menebar Manfaat</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">AF</div>
+      <div class="card-info">
+        <div class="card-name">Adinata Firzan Firlana</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">AA</div>
+      <div class="card-info">
+        <div class="card-name">Aisyah Anindya Indarta</div>
+        <div class="card-book">High Reputation</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-done">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">AN</div>
+      <div class="card-info">
+        <div class="card-name">Aisyah Nindhira Sri Ayu Pradita</div>
+        <div class="card-book">Pada Sebuah Kapal</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#c8901a"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#fdf5e6;color:#7a5010">Needs book club</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">AZ</div>
+      <div class="card-info">
+        <div class="card-name">Alma Zahira Rachmawati Adi Putri</div>
+        <div class="card-book">A Good Girl's Guide to Murder</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">AP</div>
+      <div class="card-info">
+        <div class="card-name">Andra Putra Pratama</div>
+        <div class="card-book">Sakamoto Days : Volume 1</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-done">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">AI</div>
+      <div class="card-info">
+        <div class="card-name">Anida Izzah Muqtasyidah</div>
+        <div class="card-book">Super Master OSN Fisika Untuk SMA</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#c8901a"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#fdf5e6;color:#7a5010">Needs book club</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">AN</div>
+      <div class="card-info">
+        <div class="card-name">Annisa Nazwa Aurelia</div>
+        <div class="card-book">Dunia Sains Biologi : Sel dan Kehidupan</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">AN</div>
+      <div class="card-info">
+        <div class="card-name">Azizah Nadhira Yasmin</div>
+        <div class="card-book">Immer Dein, Ian</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">BD</div>
+      <div class="card-info">
+        <div class="card-name">Bintang Dzaki Arrasyid</div>
+        <div class="card-book">National Geographic Indonesia : Pakar Forensik Memburu Penyelundup Perdagangan Satwa Liar</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">CG</div>
+      <div class="card-info">
+        <div class="card-name">Chaidir Ghani</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">DF</div>
+      <div class="card-info">
+        <div class="card-name">Dario Feroz Afif</div>
+        <div class="card-book">National Geographic Indonesia : Lorek Baru Harimau</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">DP</div>
+      <div class="card-info">
+        <div class="card-name">Dimas Panji Asmoro</div>
+        <div class="card-book">Negeri di Ujung Tanduk</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">IA</div>
+      <div class="card-info">
+        <div class="card-name">Indira Azri Zhafira</div>
+        <div class="card-book">Laut Bercerita</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">MA</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Athailla Azmi Irawan</div>
+        <div class="card-book">Riwayat Taun dan Wabah dalam Sejarah Islam</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">MF</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Fityan Al Ghifari</div>
+        <div class="card-book">Dilan : Dia Adalah Dilanku Tahun 1990</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">MR</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Rafa</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">QF</div>
+      <div class="card-info">
+        <div class="card-name">Queensha Fauziah Syahrini</div>
+        <div class="card-book">Dago Setelah Hujan</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">RL</div>
+      <div class="card-info">
+        <div class="card-name">Rima Laila Ramadhani</div>
+        <div class="card-book">The Sweetest Memories</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div></div></div><div class="class-section">
+        <div class="class-section-title">XI Sa'ad bin Abi Waqqash</div>
+        <div class="class-mini-stats"><span class="class-mini-stat">23 students</span><span class="class-mini-stat">28% avg</span><span class="class-mini-stat blue">9 reading</span><span class="class-mini-stat red">12 not started</span><span class="class-mini-stat amber">1 need club</span><span class="class-mini-stat green">1 done</span></div><div class="grid"><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">AK</div>
+      <div class="card-info">
+        <div class="card-name">Abdillah Karim Al Kayis</div>
+        <div class="card-book">Sakamoto Days : Volume 3</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">AR</div>
+      <div class="card-info">
+        <div class="card-name">Annisa Ramadhani Azzahra</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">AA</div>
+      <div class="card-info">
+        <div class="card-name">Assyfa Amilia Thalita</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">CA</div>
+      <div class="card-info">
+        <div class="card-name">Crystal Aimee Lakeisha</div>
+        <div class="card-book">Sepayung Berdua</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">FT</div>
+      <div class="card-info">
+        <div class="card-name">Fatimah Tasya Adams</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">GR</div>
+      <div class="card-info">
+        <div class="card-name">Ghayata Rifqi Ananda</div>
+        <div class="card-book">Sakamoto Days : Volume 10</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">IN</div>
+      <div class="card-info">
+        <div class="card-name">Istiqomah Noer Afni Aulia</div>
+        <div class="card-book">Bandung After Rain</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">MP</div>
+      <div class="card-info">
+        <div class="card-name">M. Pramudya Wardhana</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">MR</div>
+      <div class="card-info">
+        <div class="card-name">M. Rafiif Nurhabibie</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">MS</div>
+      <div class="card-info">
+        <div class="card-name">Mieccail Surya</div>
+        <div class="card-book">Mengincar Bung Besar : Tujuh Upaya Pembunuhan Presiden Sukarno</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">MD</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Dedek Chastio</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">MG</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Gathan Abhinaya</div>
+        <div class="card-book">Sakamoto Days : Volume 2</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">MI</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Iqbal Irwansyah</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">MR</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Raditya</div>
+        <div class="card-book">Si Bejat yang Ahli Surga</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-done">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">NF</div>
+      <div class="card-info">
+        <div class="card-name">Numa Fakih Jawhar Abilard</div>
+        <div class="card-book">National Geographic</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#c8901a"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#fdf5e6;color:#7a5010">Needs book club</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">RH</div>
+      <div class="card-info">
+        <div class="card-name">Raden Haidar Pradipta Samudra</div>
+        <div class="card-book">Warkop DKI Reborn : Jangkrik Boss!</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">RW</div>
+      <div class="card-info">
+        <div class="card-name">Rafan Wikan Tyasa</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">SK</div>
+      <div class="card-info">
+        <div class="card-name">Salwa Kayana Ekstrada</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-complete">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">TS</div>
+      <div class="card-info">
+        <div class="card-name">Tirta Soufwan</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#4a9063"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eef5f0;color:#2d5a3e">All done ✓</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">ZA</div>
+      <div class="card-info">
+        <div class="card-name">Zulfa Awalia Ramadhani</div>
+        <div class="card-book">Animal Farm</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">AG</div>
+      <div class="card-info">
+        <div class="card-name">Athaya Ghaitsa Tsuraya</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">MR</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Rafi Ihsan Irawan</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">IN</div>
+      <div class="card-info">
+        <div class="card-name">Indira Nur Amirah Putri</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div></div></div><div class="class-section">
+        <div class="class-section-title">XI Ibnu Batutah</div>
+        <div class="class-mini-stats"><span class="class-mini-stat">24 students</span><span class="class-mini-stat">31% avg</span><span class="class-mini-stat blue">4 reading</span><span class="class-mini-stat red">15 not started</span><span class="class-mini-stat amber">3 need club</span><span class="class-mini-stat green">2 done</span></div><div class="grid"><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">AR</div>
+      <div class="card-info">
+        <div class="card-name">Adelio Reinhard Suryana</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">AM</div>
+      <div class="card-info">
+        <div class="card-name">Andi Muhammad Farid Alfarabi</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">DS</div>
+      <div class="card-info">
+        <div class="card-name">Dafa Septian Mahardika</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-done">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">ES</div>
+      <div class="card-info">
+        <div class="card-name">Eisya Salsabila Nareswari</div>
+        <div class="card-book">Extraordinary Z</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#c8901a"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#fdf5e6;color:#7a5010">Needs book club</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">EF</div>
+      <div class="card-info">
+        <div class="card-name">Erland Faradillah Sugianto</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">FZ</div>
+      <div class="card-info">
+        <div class="card-name">Fadhlan Zulfa Azka</div>
+        <div class="card-book">Sepotong Hati yang Baru</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">HH</div>
+      <div class="card-info">
+        <div class="card-name">Hayya Hanifah</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-complete">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">MA</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Akhdan Shadiq</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#4a9063"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eef5f0;color:#2d5a3e">All done ✓</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">MA</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Ananda Rizqullah</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">MF</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Fendy Atahillah Putra</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">MH</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Hafizh Royyan</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:50%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">50%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">MH</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Hisyam Nawwary</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">MN</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Nabil Syafiq</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-complete">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">MZ</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Zidane Rayhan Kamil</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#4a9063"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eef5f0;color:#2d5a3e">All done ✓</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-done">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">NA</div>
+      <div class="card-info">
+        <div class="card-name">Nayla Amaliya</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#c8901a"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#fdf5e6;color:#7a5010">Needs book club</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">NA</div>
+      <div class="card-info">
+        <div class="card-name">Nurkhairurridho Avicenna Amu</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fff0ea;color:#8a3010">SM</div>
+      <div class="card-info">
+        <div class="card-name">Sayid Muhammad Omar Ath Thouriq Hammani</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-reading">
+    <div class="card-header">
+      <div class="avatar" style="background:#eafaf5;color:#0a5a42">SP</div>
+      <div class="card-info">
+        <div class="card-name">Selvira Putri Adiyani</div>
+        <div class="card-book">Sang Alkemis</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#378ADD"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#eaf2fa;color:#1a4f7a">Reading now</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdeaea;color:#8a1a1a">SS</div>
+      <div class="card-info">
+        <div class="card-name">Shofa Salsabila</div>
+        <div class="card-book">Kumpulan Puisi Sang Pujangga</div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-done">
+    <div class="card-header">
+      <div class="avatar" style="background:#f0f0fa;color:#2a2a7a">SM</div>
+      <div class="card-info">
+        <div class="card-name">Syaza Maghfiroh Saputri</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:100%;background:#c8901a"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#fdf5e6;color:#7a5010">Needs book club</span>
+      <span class="pct-label">100%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eaf2fa;color:#1a4f7a">YF</div>
+      <div class="card-info">
+        <div class="card-name">Yafi Farras Adinata</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#eef5f0;color:#2d5a3e">MF</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Fahry Syambulo</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#fdf5e6;color:#7a5010">MG</div>
+      <div class="card-info">
+        <div class="card-name">Muhammad Gezan Diyya Addien</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div><div class="card status-not_started">
+    <div class="card-header">
+      <div class="avatar" style="background:#f5eef8;color:#5a2d82">AJ</div>
+      <div class="card-info">
+        <div class="card-name">Afifah Juneeta Syaharani</div>
+        <div class="card-book"><em style="opacity:0.4">No book set</em></div>
+      </div>
+    </div>
+    <div class="bar-track"><div class="bar-fill" style="width:0%;background:#b4b2a9"></div></div>
+    <div class="card-footer">
+      <span class="status-badge" style="background:#f0ece6;color:#5a5248">Hasn't started</span>
+      <span class="pct-label">0%</span>
+    </div></div></div></div></div>
 </main>
 
 <!-- STUDENT MODAL -->
@@ -211,8 +1013,7 @@
     <div class="field">
       <label>Progress</label>
       <div class="range-row">
-        <input type="range" id="f-pct" min="0" max="100" value="0" step="5"
-          oninput="document.getElementById('f-pct-val').textContent=this.value+'%'">
+        <input type="range" id="f-pct" min="0" max="100" value="0" step="5" oninput="document.getElementById('f-pct-val').textContent=this.value+'%'">
         <div class="range-val" id="f-pct-val">0%</div>
       </div>
     </div>
@@ -284,7 +1085,7 @@
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<div class="toast show" id="toast">Edit mode unlocked ✓</div>
 
 <script>
 const STORAGE_KEY = 'bookclub_v3';
@@ -309,7 +1110,7 @@ const PALETTES = [
   {bg:'#fdeaea',color:'#8a1a1a'},{bg:'#f0f0fa',color:'#2a2a7a'},
 ];
 
-let state = {"title":"Social Book Club","sub":"Semester Assignment","deadline":null,"students":[{"id":1,"classId":"X-AD","name":"Adam Al Ghaisan","book":"Jurus Sehat Rasulullah : Hidup Sehat Menebar Manfaat","status":"reading","pct":50},{"id":2,"classId":"X-AD","name":"Adinata Firzan Firlana","book":"","status":"not_started","pct":0},{"id":3,"classId":"X-AD","name":"Aif Khaizuran Ananda","book":"High Reputation","status":"reading","pct":50},{"id":4,"classId":"X-AD","name":"Aisyah Anindya Indarta","book":"High Reputation","status":"reading","pct":50},{"id":5,"classId":"XI-SB","name":"Abdillah Karim Al Kayis","book":"Sakamoto Days : Volume 3","status":"reading","pct":50},{"id":6,"classId":"XI-SB","name":"Annisa Ramadhani Azzahra","book":"","status":"not_started","pct":0},{"id":7,"classId":"XI-SB","name":"Assyfa Amilia Thalita","book":"","status":"not_started","pct":0},{"id":8,"classId":"XI-SB","name":"Crystal Aimee Lakeisha","book":"Sepayung Berdua","status":"reading","pct":50},{"id":9,"classId":"XI-IB","name":"Adelio Reinhard Suryana","book":"","status":"not_started","pct":0},{"id":10,"classId":"XI-IB","name":"Andi Muhammad Farid Alfarabi","book":"","status":"not_started","pct":0},{"id":11,"classId":"XI-IB","name":"Dafa Septian Mahardika","book":"","status":"not_started","pct":100},{"id":12,"classId":"XI-IB","name":"Eisya Salsabila Nareswari","book":"Extraordinary Z","status":"done","pct":100},{"id":13,"classId":"X-AD","name":"Aisyah Nindhira Sri Ayu Pradita","book":"Pada Sebuah Kapal","status":"done","pct":100},{"id":14,"classId":"X-AD","name":"Alma Zahira Rachmawati Adi Putri","book":"A Good Girl's Guide to Murder","status":"reading","pct":50},{"id":15,"classId":"X-AD","name":"Andra Putra Pratama","book":"Sakamoto Days : Volume 1","status":"reading","pct":50},{"id":16,"classId":"X-AD","name":"Anida Izzah Muqtasyidah","book":"Super Master OSN Fisika Untuk SMA","status":"done","pct":100},{"id":17,"classId":"X-AD","name":"Annisa Nazwa Aurelia","book":"Dunia Sains Biologi : Sel dan Kehidupan","status":"reading","pct":50},{"id":18,"classId":"X-AD","name":"Azizah Nadhira Yasmin","book":"Immer Dein, Ian","status":"reading","pct":50},{"id":19,"classId":"X-AD","name":"Bintang Dzaki Arrasyid","book":"National Geographic Indonesia : Pakar Forensik Memburu Penyelundup Perdagangan Satwa Liar","status":"reading","pct":50},{"id":20,"classId":"X-AD","name":"Chaidir Ghani","book":"","status":"reading","pct":50},{"id":21,"classId":"X-AD","name":"Dario Feroz Afif","book":"National Geographic Indonesia : Lorek Baru Harimau","status":"reading","pct":50},{"id":22,"classId":"X-AD","name":"Dimas Panji Asmoro","book":"Negeri di Ujung Tanduk","status":"reading","pct":50},{"id":23,"classId":"X-AD","name":"Indira Azri Zhafira","book":"Laut Bercerita","status":"reading","pct":50},{"id":24,"classId":"X-AD","name":"Muhammad Athaillah Azmi Irawani","book":"Riwayat Taun dan Wabah dalam Sejarah Islam","status":"reading","pct":50},{"id":25,"classId":"X-AD","name":"Muhammad Fityan Al Ghifari","book":"Dilan : Dia Adalah Dilanku Tahun 1990","status":"reading","pct":50},{"id":26,"classId":"X-AD","name":"Muhammad Rafa","book":"","status":"reading","pct":50},{"id":27,"classId":"X-AD","name":"Queensha Fauziah Syahrini","book":"Dago Setelah Hujan","status":"reading","pct":50},{"id":28,"classId":"X-AD","name":"Rima Laila Ramadhani","book":"The Sweetest Memories","status":"not_started","pct":0},{"id":29,"classId":"XI-SB","name":"Fatimah Tasya Adams","book":"","status":"not_started","pct":0},{"id":30,"classId":"XI-SB","name":"Ghayata Rifqi Ananda","book":"Sakamoto Days : Volume 10","status":"reading","pct":50},{"id":31,"classId":"XI-SB","name":"Istiqomah Noer Afni Aulia","book":"Bandung After Rain","status":"reading","pct":50},{"id":32,"classId":"XI-SB","name":"M. Pramudya Wardhana","book":"","status":"not_started","pct":0},{"id":33,"classId":"XI-SB","name":"M. Rafiif Nurhabibie","book":"","status":"not_started","pct":0},{"id":34,"classId":"XI-SB","name":"Mieccail Surya","book":"Mengincar Bung Besar : Tujuh Upaya Pembunuhan Presiden Sukarno","status":"reading","pct":50},{"id":35,"classId":"XI-SB","name":"Muhammad Dedek Chastio","book":"","status":"not_started","pct":0},{"id":36,"classId":"XI-SB","name":"Muhammad Gathan Abhinaya","book":"Sakamoto Days : Volume 2","status":"reading","pct":50},{"id":37,"classId":"XI-SB","name":"Muhammad Iqbal Irwansyah","book":"","status":"not_started","pct":0},{"id":38,"classId":"XI-SB","name":"Muhammad Raditya","book":"Si Bejat yang Ahli Surga","status":"reading","pct":50},{"id":39,"classId":"XI-SB","name":"Numa Fakih Jawhar Abilard","book":"National Geographic","status":"done","pct":100},{"id":40,"classId":"XI-SB","name":"Raden Haidar Pradipta Samudra","book":"Warkop DKI Reborn : Jangkrik Boss!","status":"reading","pct":50},{"id":41,"classId":"XI-SB","name":"Rafan Wikan Tyasa","book":"","status":"not_started","pct":0},{"id":42,"classId":"XI-SB","name":"Salwa Kayana Ekstrada","book":"","status":"not_started","pct":0},{"id":43,"classId":"XI-SB","name":"Tirta Soufwan","book":"","status":"complete","pct":100},{"id":44,"classId":"XI-SB","name":"Zulfa Awalia Ramadhani","book":"Animal Farm","status":"reading","pct":50},{"id":45,"classId":"XI-SB","name":"Athaya Ghaitsa Tsuraya","book":"","status":"not_started","pct":0},{"id":46,"classId":"XI-SB","name":"Muhammad Rafi Ihsan Irawani","book":"","status":"not_started","pct":0},{"id":47,"classId":"XI-SB","name":"Indira Nur Amirah Putri","book":"","status":"not_started","pct":0},{"id":48,"classId":"XI-IB","name":"Erland Faradillah Sugianto","book":"","status":"not_started","pct":0},{"id":49,"classId":"XI-IB","name":"Fadhlan Zulfa Azka","book":"Sepotong Hati yang Baru","status":"reading","pct":50},{"id":50,"classId":"XI-IB","name":"Hayya Hanifah","book":"","status":"not_started","pct":0},{"id":51,"classId":"XI-IB","name":"Muhammad Akhdan Shadiq","book":"","status":"complete","pct":100},{"id":52,"classId":"XI-IB","name":"Muhammad Ananda Rizqullah","book":"","status":"not_started","pct":0},{"id":53,"classId":"XI-IB","name":"Muhammad Fendy Atahillah Putra","book":"","status":"reading","pct":50},{"id":54,"classId":"XI-IB","name":"Muhammad Hafizh Royyan","book":"","status":"reading","pct":50},{"id":55,"classId":"XI-IB","name":"Muhammad Hisyam Nawwary","book":"","status":"not_started","pct":0},{"id":56,"classId":"XI-IB","name":"Muhammad Nabil Syafiq","book":"","status":"not_started","pct":0},{"id":57,"classId":"XI-IB","name":"Muhammad Zidane Rayhan Kamil","book":"","status":"complete","pct":100},{"id":58,"classId":"XI-IB","name":"Nayla Amaliya","book":"","status":"done","pct":100},{"id":59,"classId":"XI-IB","name":"Nurkhairurridho Avicenna Amu","book":"","status":"not_started","pct":0},{"id":60,"classId":"XI-IB","name":"Sayid Muhammad Omar Ath Thouriq Hammani","book":"","status":"not_started","pct":0},{"id":61,"classId":"XI-IB","name":"Selvira Putri Adiyani","book":"3726 MDPL","status":"reading","pct":0},{"id":62,"classId":"XI-IB","name":"Shofa Salsabila","book":"","status":"not_started","pct":0},{"id":63,"classId":"XI-IB","name":"Syaza Maghfiroh Saputri","book":"","status":"done","pct":100},{"id":64,"classId":"XI-IB","name":"Yafi Farras Adinata","book":"","status":"not_started","pct":0},{"id":65,"classId":"XI-IB","name":"Muhammad Fahry Syambulo","book":"","status":"not_started","pct":0},{"id":66,"classId":"XI-IB","name":"Muhammad Gezan Diyya Addien","book":"","status":"not_started","pct":0},{"id":67,"classId":"XI-IB","name":"Afifah Juneeta Syaharani","book":"","status":"not_started","pct":0}]};
+let state = {"title":"Social Book Club","sub":"Semester Assignment","deadline":null,"students":[{"id":1,"classId":"X-AD","name":"Adam Al Ghaisan","book":"Jurus Sehat Rasulullah : Hidup Sehat Menebar Manfaat","status":"reading","pct":50},{"id":2,"classId":"X-AD","name":"Adinata Firzan Firlana","book":"","status":"not_started","pct":0},{"id":4,"classId":"X-AD","name":"Aisyah Anindya Indarta","book":"High Reputation","status":"reading","pct":50},{"id":5,"classId":"XI-SB","name":"Abdillah Karim Al Kayis","book":"Sakamoto Days : Volume 3","status":"reading","pct":50},{"id":6,"classId":"XI-SB","name":"Annisa Ramadhani Azzahra","book":"","status":"not_started","pct":0},{"id":7,"classId":"XI-SB","name":"Assyfa Amilia Thalita","book":"","status":"not_started","pct":0},{"id":8,"classId":"XI-SB","name":"Crystal Aimee Lakeisha","book":"Sepayung Berdua","status":"reading","pct":50},{"id":9,"classId":"XI-IB","name":"Adelio Reinhard Suryana","book":"","status":"not_started","pct":0},{"id":10,"classId":"XI-IB","name":"Andi Muhammad Farid Alfarabi","book":"","status":"not_started","pct":0},{"id":11,"classId":"XI-IB","name":"Dafa Septian Mahardika","book":"","status":"not_started","pct":100},{"id":12,"classId":"XI-IB","name":"Eisya Salsabila Nareswari","book":"Extraordinary Z","status":"done","pct":100},{"id":13,"classId":"X-AD","name":"Aisyah Nindhira Sri Ayu Pradita","book":"Pada Sebuah Kapal","status":"done","pct":100},{"id":14,"classId":"X-AD","name":"Alma Zahira Rachmawati Adi Putri","book":"A Good Girl's Guide to Murder","status":"reading","pct":50},{"id":15,"classId":"X-AD","name":"Andra Putra Pratama","book":"Sakamoto Days : Volume 1","status":"reading","pct":50},{"id":16,"classId":"X-AD","name":"Anida Izzah Muqtasyidah","book":"Super Master OSN Fisika Untuk SMA","status":"done","pct":100},{"id":17,"classId":"X-AD","name":"Annisa Nazwa Aurelia","book":"Dunia Sains Biologi : Sel dan Kehidupan","status":"reading","pct":50},{"id":18,"classId":"X-AD","name":"Azizah Nadhira Yasmin","book":"Immer Dein, Ian","status":"reading","pct":50},{"id":19,"classId":"X-AD","name":"Bintang Dzaki Arrasyid","book":"National Geographic Indonesia : Pakar Forensik Memburu Penyelundup Perdagangan Satwa Liar","status":"reading","pct":50},{"id":20,"classId":"X-AD","name":"Chaidir Ghani","book":"","status":"reading","pct":50},{"id":21,"classId":"X-AD","name":"Dario Feroz Afif","book":"National Geographic Indonesia : Lorek Baru Harimau","status":"reading","pct":50},{"id":22,"classId":"X-AD","name":"Dimas Panji Asmoro","book":"Negeri di Ujung Tanduk","status":"reading","pct":50},{"id":23,"classId":"X-AD","name":"Indira Azri Zhafira","book":"Laut Bercerita","status":"reading","pct":50},{"id":24,"classId":"X-AD","name":"Muhammad Athailla Azmi Irawan","book":"Riwayat Taun dan Wabah dalam Sejarah Islam","status":"reading","pct":50},{"id":25,"classId":"X-AD","name":"Muhammad Fityan Al Ghifari","book":"Dilan : Dia Adalah Dilanku Tahun 1990","status":"reading","pct":50},{"id":26,"classId":"X-AD","name":"Muhammad Rafa","book":"","status":"reading","pct":50},{"id":27,"classId":"X-AD","name":"Queensha Fauziah Syahrini","book":"Dago Setelah Hujan","status":"reading","pct":50},{"id":28,"classId":"X-AD","name":"Rima Laila Ramadhani","book":"The Sweetest Memories","status":"not_started","pct":0},{"id":29,"classId":"XI-SB","name":"Fatimah Tasya Adams","book":"","status":"not_started","pct":0},{"id":30,"classId":"XI-SB","name":"Ghayata Rifqi Ananda","book":"Sakamoto Days : Volume 10","status":"reading","pct":50},{"id":31,"classId":"XI-SB","name":"Istiqomah Noer Afni Aulia","book":"Bandung After Rain","status":"reading","pct":50},{"id":32,"classId":"XI-SB","name":"M. Pramudya Wardhana","book":"","status":"not_started","pct":0},{"id":33,"classId":"XI-SB","name":"M. Rafiif Nurhabibie","book":"","status":"not_started","pct":0},{"id":34,"classId":"XI-SB","name":"Mieccail Surya","book":"Mengincar Bung Besar : Tujuh Upaya Pembunuhan Presiden Sukarno","status":"reading","pct":50},{"id":35,"classId":"XI-SB","name":"Muhammad Dedek Chastio","book":"","status":"not_started","pct":0},{"id":36,"classId":"XI-SB","name":"Muhammad Gathan Abhinaya","book":"Sakamoto Days : Volume 2","status":"reading","pct":50},{"id":37,"classId":"XI-SB","name":"Muhammad Iqbal Irwansyah","book":"","status":"not_started","pct":0},{"id":38,"classId":"XI-SB","name":"Muhammad Raditya","book":"Si Bejat yang Ahli Surga","status":"reading","pct":50},{"id":39,"classId":"XI-SB","name":"Numa Fakih Jawhar Abilard","book":"National Geographic","status":"done","pct":100},{"id":40,"classId":"XI-SB","name":"Raden Haidar Pradipta Samudra","book":"Warkop DKI Reborn : Jangkrik Boss!","status":"reading","pct":50},{"id":41,"classId":"XI-SB","name":"Rafan Wikan Tyasa","book":"","status":"not_started","pct":0},{"id":42,"classId":"XI-SB","name":"Salwa Kayana Ekstrada","book":"","status":"not_started","pct":0},{"id":43,"classId":"XI-SB","name":"Tirta Soufwan","book":"","status":"complete","pct":100},{"id":44,"classId":"XI-SB","name":"Zulfa Awalia Ramadhani","book":"Animal Farm","status":"reading","pct":50},{"id":45,"classId":"XI-SB","name":"Athaya Ghaitsa Tsuraya","book":"","status":"not_started","pct":0},{"id":46,"classId":"XI-SB","name":"Muhammad Rafi Ihsan Irawan","book":"","status":"not_started","pct":0},{"id":47,"classId":"XI-SB","name":"Indira Nur Amirah Putri","book":"","status":"not_started","pct":0},{"id":48,"classId":"XI-IB","name":"Erland Faradillah Sugianto","book":"","status":"not_started","pct":0},{"id":49,"classId":"XI-IB","name":"Fadhlan Zulfa Azka","book":"Sepotong Hati yang Baru","status":"reading","pct":50},{"id":50,"classId":"XI-IB","name":"Hayya Hanifah","book":"","status":"not_started","pct":0},{"id":51,"classId":"XI-IB","name":"Muhammad Akhdan Shadiq","book":"","status":"complete","pct":100},{"id":52,"classId":"XI-IB","name":"Muhammad Ananda Rizqullah","book":"","status":"not_started","pct":0},{"id":53,"classId":"XI-IB","name":"Muhammad Fendy Atahillah Putra","book":"","status":"reading","pct":50},{"id":54,"classId":"XI-IB","name":"Muhammad Hafizh Royyan","book":"","status":"reading","pct":50},{"id":55,"classId":"XI-IB","name":"Muhammad Hisyam Nawwary","book":"","status":"not_started","pct":0},{"id":56,"classId":"XI-IB","name":"Muhammad Nabil Syafiq","book":"","status":"not_started","pct":0},{"id":57,"classId":"XI-IB","name":"Muhammad Zidane Rayhan Kamil","book":"","status":"complete","pct":100},{"id":58,"classId":"XI-IB","name":"Nayla Amaliya","book":"","status":"done","pct":100},{"id":59,"classId":"XI-IB","name":"Nurkhairurridho Avicenna Amu","book":"","status":"not_started","pct":0},{"id":60,"classId":"XI-IB","name":"Sayid Muhammad Omar Ath Thouriq Hammani","book":"","status":"not_started","pct":0},{"id":61,"classId":"XI-IB","name":"Selvira Putri Adiyani","book":"Sang Alkemis","status":"reading","pct":0},{"id":62,"classId":"XI-IB","name":"Shofa Salsabila","book":"Kumpulan Puisi Sang Pujangga","status":"not_started","pct":0},{"id":63,"classId":"XI-IB","name":"Syaza Maghfiroh Saputri","book":"","status":"done","pct":100},{"id":64,"classId":"XI-IB","name":"Yafi Farras Adinata","book":"","status":"not_started","pct":0},{"id":65,"classId":"XI-IB","name":"Muhammad Fahry Syambulo","book":"","status":"not_started","pct":0},{"id":66,"classId":"XI-IB","name":"Muhammad Gezan Diyya Addien","book":"","status":"not_started","pct":0},{"id":67,"classId":"XI-IB","name":"Afifah Juneeta Syaharani","book":"","status":"not_started","pct":0}]};
 let nextId = 68;
 let editingId = null;
 let activeFilter = 'all';
@@ -673,5 +1474,6 @@ document.addEventListener('keydown', e => {
 
 load();
 </script>
-</body>
-</html>
+
+
+</body></html>
